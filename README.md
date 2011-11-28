@@ -1,0 +1,3 @@
+- [Blog post](http://heygrady.com/blog/2011/02/17/using-sass-with-the-1kb-grid-system/)
+- [Gist](https://gist.github.com/702760)
+- [The 1KB CSS Grid](http://1kbgrid.com/)
