@@ -27,4 +27,4 @@ Simple grid system based on [the 1KB CSS Grid](http://1kbgrid.com/) designed to 
 
 ## Notes
 - You must define your own clearfix class for the grid to work properly. The grid attempts to extend an existing .clearfix class. If you're using [Compass](http://compass-style.org), I'd recommend using their [PIE Clearfix](http://compass-style.org/reference/compass/utilities/general/clearfix/#mixin-pie-clearfix): `.clearfix { @include pie-clearfix; }`
-- The only thing requiring an IE6 fix is the floats on columns. The implemented fix is wrapped in an `.ie6` class that relies on the [HTML5 Boilerplate](http://html5boilerplate.com/) fix for [conditional styles](paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/) to avoid applying nonsense rules to other browsers.
+- The only thing requiring an IE6 fix is the floats on columns. The implemented fix is wrapped in an `.ie6` class that relies on the [HTML5 Boilerplate](http://html5boilerplate.com/) fix for [conditional styles](http://paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/) to avoid applying nonsense rules to other browsers.
