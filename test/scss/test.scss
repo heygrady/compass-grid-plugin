@@ -49,5 +49,6 @@
 }
 
 // add a clearfix rule, requires compass
+// add a clearfix rule, requires compass
 @import "compass/utilities/general/clearfix";
 .clearfix { @include pie-clearfix; }

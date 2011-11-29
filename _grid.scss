@@ -67,8 +67,7 @@ $grid-support-for-ie6: false !default;
 
 // alter the margins of a column
 @mixin grid-offset($i: 1, $plus: 0, $side: left) {
-	$margin: grid-width($i, $gutter-width + $plus) + ($gutter-width/2);
-	margin-#{$side}: $margin;
+	margin-#{$side}: grid-width($i, $gutter-width + $plus) + ($gutter-width/2);
 }
 @mixin grid-offset-left($i: 1, $plus: 0) {
   @include grid-offset($i, $plus, left);
