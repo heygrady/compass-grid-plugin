@@ -67,7 +67,7 @@ $grid-support-for-ie6: false !default;
 
 // alter the margins of a column
 @mixin grid-offset($i: 1, $plus: 0, $side: left) {
-	margin-#{$side}: grid-width($i, $gutter-width + $plus) + ($gutter-width/2);
+	margin-#{$side}: (grid-width($i, $gutter-width + $plus) + ($gutter-width/2));
 }
 @mixin grid-offset-left($i: 1, $plus: 0) {
   @include grid-offset($i, $plus, left);
@@ -80,11 +80,6 @@ $grid-support-for-ie6: false !default;
 // Default Styles
 //-----------------------------------
 @if $grid-css {
-  // columns widths
-  @for $i from 1 through $columns {
-    .grid-#{$i} { width: grid-width($i, $gutter-width); }
-  }
-
   // containers
   .page {
     @include grid-page;
@@ -99,6 +94,17 @@ $grid-support-for-ie6: false !default;
   // columns
   .column {
     @include grid-column;
+  }
+
+  // columns widths
+  @for $i from 1 through $columns {
+    .grid-#{$i} { width: grid-width($i); }
+
+    // alter left and right margins
+    @if $i < $columns {
+      .before-#{$i} { @include grid-offset-left($i); }
+      .after-#{$i} { @include grid-offset-right($i); }
+    }
   }
 
   // Box

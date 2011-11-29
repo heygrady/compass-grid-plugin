@@ -15,26 +15,202 @@
 </head>
 
 <body>
-  <div id="container">
-    <header>
-        <h1>Header</h1>
-        <nav><a href="#">Nav Link</a></nav>
-    </header>
-    <div role="main">
-      <div id="left-column">Left Column</div>
-      <div id="main-column">
-        <section class="hero">
-          Hero Space, I take the full width
-        </section>
-        <section>
-          <article id="content">Actual Content</article>
-          <aside id="right-column">Right Column</aside>
-        </section>
-      </div>
+  <!-- normal -->
+  <div class="page">
+    <h2>Normal</h2>
+    <div class="row">
+      <div class="column grid-1">1</div>
+      <div class="column grid-11">11</div>
     </div>
-    <footer>
-      <p>&copy; Copyright 2011</p>
-    </footer>
+    <div class="row">
+      <div class="column grid-2">2</div>
+      <div class="column grid-10">10</div>
+    </div>
+    <div class="row">
+      <div class="column grid-3">3</div>
+      <div class="column grid-9">9</div>
+    </div>
+    <div class="row">
+      <div class="column grid-4">4</div>
+      <div class="column grid-8">8</div>
+    </div>
+    <div class="row">
+      <div class="column grid-5">5</div>
+      <div class="column grid-7">7</div>
+    </div>
+    <div class="row">
+      <div class="column grid-6">6</div>
+      <div class="column grid-6">6</div>
+    </div>
+    <div class="row">
+      <div class="column grid-12">12</div>
+    </div>
+  </div>
+
+  <!-- borders -->
+  <div class="page borders">
+    <h2>Borders</h2>
+    <div class="row">
+      <div class="column grid-1">1</div>
+      <div class="column grid-11">11</div>
+    </div>
+    <div class="row">
+      <div class="column grid-2">2</div>
+      <div class="column grid-10">10</div>
+    </div>
+    <div class="row">
+      <div class="column grid-3">3</div>
+      <div class="column grid-9">9</div>
+    </div>
+    <div class="row">
+      <div class="column grid-4">4</div>
+      <div class="column grid-8">8</div>
+    </div>
+    <div class="row">
+      <div class="column grid-5">5</div>
+      <div class="column grid-7">7</div>
+    </div>
+    <div class="row">
+      <div class="column grid-6">6</div>
+      <div class="column grid-6">6</div>
+    </div>
+    <div class="row">
+      <div class="column grid-12">12</div>
+    </div>
+  </div>
+
+  <!-- padding -->
+  <div class="page padding">
+    <h2>Padding</h2>
+    <div class="row">
+      <div class="column grid-1">1</div>
+      <div class="column grid-11">11</div>
+    </div>
+    <div class="row">
+      <div class="column grid-2">2</div>
+      <div class="column grid-10">10</div>
+    </div>
+    <div class="row">
+      <div class="column grid-3">3</div>
+      <div class="column grid-9">9</div>
+    </div>
+    <div class="row">
+      <div class="column grid-4">4</div>
+      <div class="column grid-8">8</div>
+    </div>
+    <div class="row">
+      <div class="column grid-5">5</div>
+      <div class="column grid-7">7</div>
+    </div>
+    <div class="row">
+      <div class="column grid-6">6</div>
+      <div class="column grid-6">6</div>
+    </div>
+    <div class="row">
+      <div class="column grid-12">12</div>
+    </div>
+  </div>
+
+  <!-- before -->
+  <div class="page">
+    <h2>Offset Before</h2>
+    <div class="row">
+      <div class="column grid-10">10</div>
+      <div class="column grid-1 before-1">1 before</div>
+    </div>
+    <div class="row">
+      <div class="column grid-9">9</div>
+      <div class="column grid-1 before-2">2 before</div>
+    </div>
+    <div class="row">
+      <div class="column grid-8">8</div>
+      <div class="column grid-1 before-3">3 before</div>
+    </div>
+    <div class="row">
+      <div class="column grid-7">7</div>
+      <div class="column grid-1 before-4">4 before</div>
+    </div>
+    <div class="row">
+      <div class="column grid-6">6</div>
+      <div class="column grid-1 before-5">5 before</div>
+    </div>
+    <div class="row">
+      <div class="column grid-5">5</div>
+      <div class="column grid-1 before-6">6 before</div>
+    </div>
+    <div class="row">
+      <div class="column grid-4">4</div>
+      <div class="column grid-1 before-7">7 before</div>
+    </div>
+    <div class="row">
+      <div class="column grid-3">3</div>
+      <div class="column grid-1 before-8">8 before</div>
+    </div>
+    <div class="row">
+      <div class="column grid-2">2</div>
+      <div class="column grid-1 before-9">9 before</div>
+    </div>
+    <div class="row">
+      <div class="column grid-1">1</div>
+      <div class="column grid-1 before-10">10 before</div>
+    </div>
+    <div class="row">
+      <div class="column grid-1 before-11">11 before</div>
+    </div>
+    <div class="row">
+      <div class="column grid-12">12</div>
+    </div>
+  </div>
+
+  <!-- after -->
+  <div class="page">
+    <h2>Offset After</h2>
+    <div class="row">
+      <div class="column grid-1 after-1">1 after</div>
+      <div class="column grid-10">10</div>
+    </div>
+    <div class="row">
+      <div class="column grid-1 after-2">2 after</div>
+      <div class="column grid-9">9</div>
+    </div>
+    <div class="row">
+      <div class="column grid-1 after-3">3 after</div>
+      <div class="column grid-8">8</div>
+    </div>
+    <div class="row">
+      <div class="column grid-1 after-4">4 after</div>
+      <div class="column grid-7">7</div>
+    </div>
+    <div class="row">
+      <div class="column grid-1 after-5">5 after</div>
+      <div class="column grid-6">6</div>
+    </div>
+    <div class="row">
+      <div class="column grid-1 after-6">6 after</div>
+      <div class="column grid-5">5</div>
+    </div>
+    <div class="row">
+      <div class="column grid-1 after-7">7 after</div>
+      <div class="column grid-4">4</div>
+    </div>
+    <div class="row">
+      <div class="column grid-1 after-8">8 after</div>
+      <div class="column grid-3">3</div>
+    </div>
+    <div class="row">
+      <div class="column grid-1 after-9">9 after</div>
+      <div class="column grid-2">2</div>
+    </div>
+    <div class="row">
+      <div class="column grid-1 after-10">10 after</div>
+      <div class="column grid-1">1</div>
+    </div>
+    <div class="row">
+      <div class="column grid-1 after-11">11 after</div>
+    </div>
+    <div class="row">
+      <div class="column grid-12">12</div>
+    </div>
   </div>
 </body>
 </html>

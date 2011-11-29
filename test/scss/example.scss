@@ -1,0 +1,54 @@
+// import the grid
+@import "../../_grid.scss";
+
+// establishes page width and centers
+#container {
+  @include grid-page;
+}
+
+// main page sections
+[role="main"] {
+  @include grid-row(true); //true indicates a row is directly inside a page
+}
+
+// header and footer don't have columns in this example
+#container > header, #container > footer {
+  margin: 0 $gutter-width/2; // margins, like full-width columns
+  border: 1px solid black;
+  margin-bottom: $gutter-width;
+}
+
+// side columns
+#left-column, #right-column {
+  @include grid-column(3, -2px); //3 columns wide
+  border: 1px solid red;
+}
+
+// main column
+#main-column {
+  @include grid-column(9); //9 columns wide
+  
+  // sections in the main column are rows
+  > section {
+    @include grid-row;
+    margin-bottom: $gutter-width;
+  }
+
+  // hero sections don't have columns in this example
+  > section.hero {
+    border: 1px solid black;
+    margin-left: 0;
+    margin-right: 0;
+  }
+}
+
+// center column
+#content {
+  @include grid-column(6, -2px); //6 columns wide
+  border: 1px solid blue;
+}
+
+// add a clearfix rule, requires compass
+// add a clearfix rule, requires compass
+@import "compass/utilities/general/clearfix";
+.clearfix { @include pie-clearfix; }
