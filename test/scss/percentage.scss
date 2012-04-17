@@ -1,0 +1,72 @@
+// H5BP
+@import "h5bp";
+@include h5bp-display;
+@include h5bp-base;
+//@include h5bp-selection;
+@include h5bp-links;
+@include h5bp-typography;
+@include h5bp-lists;
+@include h5bp-embeds;
+@include h5bp-figures;
+@include h5bp-forms;
+@include h5bp-tables;
+
+// set the grid variables
+$grid-css: true; // turn on the generic styles
+$fluid-grid-css: true; // turn on the generic styles
+
+// import the grid
+@import "../../_grid.scss";
+@import "../../fluid-grid.scss";
+
+.column {
+  background-color: #ccc;
+  margin-bottom: $gutter-width;
+  .column {
+    background-color: darken(#ccc, 10%);
+    margin-bottom: 0;
+    .column {
+      background-color: darken(#ccc, 20%);
+      .column {
+        background-color: darken(#ccc, 30%);
+      }
+    }
+  }
+}
+.fluid-column {
+  background-color: #ccc;
+  margin-bottom: $gutter-width;
+  .fluid-column {
+    background-color: darken(#ccc, 15%);
+    margin-bottom: 0;
+    .fluid-column {
+      background-color: darken(#ccc, 30%);
+      .fluid-column {
+        background-color: darken(#ccc, 45%);
+      }
+    }
+  }
+}
+
+.borders {
+  .column, .fluid-column {
+    border: 2px solid black;
+  }
+  @for $i from 1 through $columns {
+    .grid-#{$i} { width: grid-width($i, -4px); }
+  }
+}
+
+.padding {
+  .column, .fluid-column {
+    padding: 0 $gutter-width/2;
+  }
+  @for $i from 1 through $columns {
+    .grid-#{$i} { width: grid-width($i, -$gutter-width); }
+  }
+}
+
+// add a clearfix rule, requires compass
+// add a clearfix rule, requires compass
+@import "compass/utilities/general/clearfix";
+.clearfix { @include pie-clearfix; }

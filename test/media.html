@@ -1,0 +1,67 @@
+<!doctype html>
+<!--[if lt IE 7]> <html class="fluid-no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="fluid-no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="fluid-no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="fluid-no-js" lang="en"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+
+  <title>1KB SCSS Grid Test Page</title>
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+
+  <link rel="stylesheet" href="css/media.css">
+</head>
+
+<body>
+  <header>
+    header
+  </header>
+  <div id="main">
+    <div class="left-column">
+      <nav>
+        <ul>
+          <li><a href="#">Vestibulum dapibus</a></li>
+          <li><a href="#">Maecenas rhoncus</a></li>
+          <li><a href="#">Nulla tortor mauris</a></li>
+          <li><a href="#">Vivamus ac odio</a></li>
+          <li><a href="#">Nunc vel interdum</a></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="main-column">
+      <section class="intro">
+        <h1>Nulla tortor mauris</h1>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas nec tortor a ante gravida imperdiet ut nec erat. Sed tellus est, adipiscing ac feugiat in, gravida et leo. Cras et felis at eros adipiscing bibendum ac eget lacus. Nulla tortor mauris, vulputate bibendum aliquet eu, pharetra a ipsum.</p>
+      </section>
+      <section>
+        <article>
+          <h2>Nulla tortor mauris, vulputate bibendum</h2>
+          <p>
+          <img class="float-left grid-3" src="i/dino-1.jpg" alt="">Nullam neque justo, porttitor at mattis nec, molestie quis nisi. Sed quis sem enim. Ut sodales massa quis eros tempor tincidunt. In hac habitasse platea dictumst. Maecenas rhoncus interdum neque, ac faucibus mauris semper a. Vestibulum dapibus feugiat sapien id consequat. Pellentesque ut augue in dolor euismod dignissim eu sed purus. Nulla posuere, dolor a molestie laoreet, purus nisi eleifend tellus, eu tincidunt orci felis eget tellus. Mauris vel leo nulla. Nam vulputate sem iaculis tellus varius eget congue turpis adipiscing. Donec ac orci vel elit viverra convallis eu eu arcu. Aliquam et mi eros. Maecenas porta vehicula neque eu ultrices.</p>
+          <p>Nulla vel nunc risus, nec euismod tortor. Maecenas eget tempus nibh. Cras in ante lacus. Morbi quam dui, volutpat convallis ornare id, auctor vel elit. Suspendisse pharetra erat magna. Vivamus ac odio porta purus rhoncus porta nec nec nibh. Integer non erat purus. Phasellus convallis nibh vitae est pulvinar ut mattis lorem tincidunt. Nunc vel interdum magna. Cras ultricies, dui sit amet gravida mollis, augue diam sodales metus, eget vehicula leo ligula eget est.</p>
+        </article>
+        <aside>
+          <div class="box">
+            <img src="i/dino-2.png" alt="">
+            <p>Quisque facilisis lacus sit amet turpis porttitor vitae accumsan sem consectetur. Nam sem dolor, scelerisque ut convallis a, rhoncus eget mi. Vivamus urna odio, vehicula tristique dignissim vel, pharetra id diam.</p>
+          </div>
+        </aside>
+      </section>
+    </div>
+  </div>
+  <footer>
+    footer
+  </footer>
+  <div class="measure"></div>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+  <script>
+  var $measure = $('.measure');
+  $measure.text($measure.width());
+  $(window).resize(function() {
+    $measure.text($measure.width());
+  });
+  </script>
+</body>
+</html>

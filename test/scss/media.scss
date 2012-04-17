@@ -1,0 +1,344 @@
+// H5BP
+@import "h5bp";
+@include h5bp-display;
+@include h5bp-base;
+//@include h5bp-selection;
+@include h5bp-links;
+@include h5bp-typography;
+@include h5bp-lists;
+@include h5bp-embeds;
+@include h5bp-figures;
+@include h5bp-forms;
+@include h5bp-tables;
+
+// set the grid variables
+$grid-css: true; // turn on the generic styles
+$fluid-grid-css: true; // turn on the generic styles
+
+// import the grid
+@import "../../_grid.scss";
+@import "../../fluid-grid.scss";
+
+// generic styles
+.float-left, .float-right { margin-bottom: ($gutter-width / 2); }
+.float-left { float: left; margin-right: ($gutter-width / 2); }
+.float-right { float: right; margin-left: ($gutter-width / 2); }
+
+// set up main layout
+header, #main, footer {
+	@include grid-page();
+}
+header, footer {
+	width: grid-width(12);
+}
+header {
+	background-color: blue;
+	height: grid-width(1.5)
+}
+footer {
+	background-color: #ccc;
+}
+.left-column {
+	@include grid-column(3);
+}
+.main-column {
+	@include grid-column(9);
+	section {
+		@include grid-row();
+	}
+	section.intro {
+		margin: 0;
+	}
+	article {
+		@include grid-column(6);
+	}
+	aside {
+		@include grid-column(3);
+		.box img {
+			width: grid-width(3);
+		}
+	}
+}
+
+//-----------------------------------
+// Responsive
+//-----------------------------------
+// Old/Small Android
+// 0 to 320px
+// 3 columns
+@media only screen and (min-width: 0px) {
+	.measure { background-color: red; }
+	header, #main, footer {
+		@include fluid-grid-page();
+	}
+	header, footer {
+		max-width: 100%;
+		margin: 0 fluid-width($gutter-width/2, $parent: 4);
+	}
+	.left-column {
+		@include fluid-grid-column(4, $parent: 4);
+	}
+	.main-column {
+		@include fluid-grid-column(4, $parent: 4);
+		section {
+			@include fluid-grid-row();
+		}
+		section.intro {
+			margin: 0;
+		}
+		article {
+			@include fluid-grid-column(4, $parent: 4);
+
+			.float-left, .float-right { margin-bottom: fluid-width($gutter-width / 2, $parent: 4); }
+			.float-left { float: left; margin-right: fluid-width($gutter-width / 2, $parent: 4); }
+			.float-right { float: right; margin-left: fluid-width($gutter-width / 2, $parent: 4); }
+			img.grid-3 { @include fluid-grid(4, $parent: 4); }
+		}
+		aside {
+			@include fluid-grid-column(4, $parent: 4);
+			.box img {
+				width: fluid-grid-width(4, $parent: 4);
+			}
+		}
+	}
+}
+
+// iPhone
+// Old/Small Android (landscape)
+// 320px to 480px
+// 4 to 6 columns
+@media only screen and (min-width: 320px) {
+	.measure { background-color: orange; }
+}
+
+// Most Android Phones
+// iPhone (landscape)
+// 480px to 540px
+// 6 to 7 columns
+@media only screen and (min-width: 480px) {
+	.measure { background-color: yellow; }
+	header, #main, footer {
+		@include fluid-grid-page();
+	}
+	header, footer {
+		max-width: 100%;
+		margin: 0 fluid-width($gutter-width/2, $parent: 6);
+	}
+	.left-column {
+		@include fluid-grid-column(6, $parent: 6);
+	}
+	.main-column {
+		@include fluid-grid-column(6, $parent: 6);
+		section {
+			@include fluid-grid-row();
+		}
+		section.intro {
+			margin: 0;
+		}
+		article {
+			@include fluid-grid-column(6, $parent: 6);
+			.float-left, .float-right { margin-bottom: fluid-width($gutter-width / 2, $parent: 6); }
+			.float-left { float: left; margin-right: fluid-width($gutter-width / 2, $parent: 6); }
+			.float-right { float: right; margin-left: fluid-width($gutter-width / 2, $parent: 6); }
+			img.grid-3 { @include fluid-grid(3, $parent: 6); }
+		}
+		aside {
+			@include fluid-grid-column(6, $parent: 6);
+			.box img {
+				width: fluid-grid-width(6, $parent: 6);
+			}
+		}
+	}
+}
+
+// New Droids/HTC
+// 540px to 600px
+// 7 columns
+@media only screen and (min-width: 540px) {
+	// skip
+	.measure { background-color: green; }
+}
+
+// Kindle Fire
+// 600px to 768px
+// 7 to 9 columns
+@media only screen and (min-width: 600px) {
+	.measure { background-color: blue; color: white; }
+	header, #main, footer {
+		@include fluid-grid-page();
+	}
+	header, footer {
+		max-width: 100%;
+		margin: 0 fluid-width($gutter-width/2, $parent: 8);
+	}
+	.left-column {
+		@include fluid-grid-column(3, $parent: 8);
+	}
+	.main-column {
+		@include fluid-grid-column(5, $parent: 8);
+		section {
+			@include fluid-grid-row();
+		}
+		section.intro {
+			margin: 0;
+		}
+		article {
+			@include fluid-grid-column(5, $parent: 5);
+			.float-left, .float-right { margin-bottom: fluid-width($gutter-width / 2, $parent: 5); }
+			.float-left { float: left; margin-right: fluid-width($gutter-width / 2, $parent: 5); }
+			.float-right { float: right; margin-left: fluid-width($gutter-width / 2, $parent: 5); }
+			img.grid-3 { @include fluid-grid(3, $parent: 5); }
+		}
+		aside {
+			@include fluid-grid-column(5, $parent: 5);
+			.box img {
+				width: fluid-grid-width(5, $parent: 5);
+			}
+		}
+	}
+}
+
+// iPad
+// 768px to 800px
+// 9 to 10 columns
+@media only screen and (min-width: 768px) {
+	// skip
+	.measure { background-color: purple; color: white; }
+	header, #main, footer {
+		@include fluid-grid-page();
+	}
+	header, footer {
+		max-width: 100%;
+		margin: 0 fluid-width($gutter-width/2, $parent: 9);
+	}
+	.left-column {
+		@include fluid-grid-column(3, $parent: 9);
+	}
+	.main-column {
+		@include fluid-grid-column(6, $parent: 9);
+		section {
+			@include fluid-grid-row();
+		}
+		section.intro {
+			margin: 0;
+		}
+		article {
+			@include fluid-grid-column(6, $parent: 6);
+			.float-left, .float-right { margin-bottom: fluid-width($gutter-width / 2, $parent: 6); }
+			.float-left { float: left; margin-right: fluid-width($gutter-width / 2, $parent: 6); }
+			.float-right { float: right; margin-left: fluid-width($gutter-width / 2, $parent: 6); }
+			img.grid-3 { @include fluid-grid(3, $parent: 6); }
+		}
+		aside {
+			@include fluid-grid-column(6, $parent: 6);
+			.box img {
+				width: fluid-grid-width(6, $parent: 6);
+			}
+		}
+	}
+}
+
+// Android Tablets
+// 800px to 960px
+// 10 to 12 columns
+@media only screen and (min-width: 800px) {
+	// skip
+	.measure { background-color: blue; color: white; }
+	header, #main, footer {
+		@include fluid-grid-page();
+	}
+	header, footer {
+		max-width: 100%;
+		margin: 0 fluid-width($gutter-width/2, $parent: 11);
+	}
+	.left-column {
+		@include fluid-grid-column(3, $parent: 11);
+	}
+	.main-column {
+		@include fluid-grid-column(8, $parent: 11);
+		section {
+			@include fluid-grid-row();
+		}
+		section.intro {
+			margin: 0;
+		}
+		article {
+			@include fluid-grid-column(5, $parent: 8);
+			.float-left, .float-right { margin-bottom: fluid-width($gutter-width / 2, $parent: 5); }
+			.float-left { float: left; margin-right: fluid-width($gutter-width / 2, $parent: 5); }
+			.float-right { float: right; margin-left: fluid-width($gutter-width / 2, $parent: 5); }
+			img.grid-3 { @include fluid-grid(3, $parent: 5); }
+		}
+		aside {
+			@include fluid-grid-column(3, $parent: 8);
+			.box img {
+				width: fluid-grid-width(3, $parent: 3);
+			}
+		}
+	}
+}
+
+// Desktop
+// 960px to 992px
+// 12 columns
+@media only screen and (min-width: 960px) {
+	.measure { background-color: green; }
+
+	header, #main, footer {
+		@include grid-page();
+	}
+	header, footer {
+		width: grid-width(12);
+	}
+	.left-column {
+		@include grid-column(3);
+	}
+	.main-column {
+		@include grid-column(9);
+		section {
+			@include grid-row();
+		}
+		section.intro {
+			margin: 0;
+		}
+		article {
+			@include grid-column(6);
+			.float-left, .float-right { margin-bottom:($gutter-width / 2); }
+			.float-left { float: left; margin-right: ($gutter-width / 2); }
+			.float-right { float: right; margin-left: ($gutter-width / 2); }
+			img.grid-3 { @include grid(3); }
+		}
+		aside {
+			@include grid-column(3);
+			.box img {
+				width: grid-width(3);
+			}
+		}
+	}
+}
+
+// Desktop (320 and Up)
+// 992px to 1024px
+@media only screen and (min-width: 992px) {
+	.measure { background-color: yellow; }
+}
+
+// iPad (landscape)
+// Kindle Fire (landscape)
+// 1024px to 1280px
+@media only screen and (min-width: 1024px) {
+	.measure { background-color: orange; }
+}
+
+// Android tablets (landscape)
+// 1280px to infinity
+@media only screen and (min-width: 1280px) {
+	.measure { background-color: red; }
+}
+
+// retina display
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (-o-min-device-pixel-ratio: 3/2), only screen and (min-device-pixel-ratio: 1.5) {
+
+}
+
+@include h5bp-helpers;
