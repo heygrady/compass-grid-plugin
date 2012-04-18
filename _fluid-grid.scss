@@ -16,12 +16,14 @@ $fluid-grid-css: false !default;
   width: fluid-grid-width($i, $plus, $parent, $parent-plus);
 }
 
-// return a width
+// return a percentage width relative to columns
 @function fluid-grid-width($i, $plus: 0, $parent: $columns, $parent-plus: 0) {
   @return percentage(grid-width($i, $plus) / grid-width($parent, $parent-plus + $gutter-width));
 }
-@function fluid-width($width, $parent: $columns, $parent-plus: 0) {
-  @return percentage($width / grid-width($parent, $parent-plus + $gutter-width));
+
+// return a percentage width relative to lengths
+@function fluid-width($width, $parent-width: grid-width($columns, $gutter-width)) {
+  @return percentage($width / $parent-width);
 }
 
 
@@ -48,7 +50,7 @@ $fluid-grid-css: false !default;
   @if $page {
     margin: 0 0;
   } @else {
-    margin: 0 fluid-width((-$gutter-width / 2), $parent, $parent-plus - $gutter-width);
+    margin: 0 fluid-width(-$gutter-width / 2, grid-width($parent, $parent-plus));
   }
 }
 
@@ -59,7 +61,7 @@ $fluid-grid-css: false !default;
 // specify a column
 @mixin fluid-grid-column($i: false, $plus: 0, $parent: $columns, $parent-plus: 0) {
   @include box-sizing(border-box);
-  margin: 0 fluid-width($gutter-width / 2, $parent, $parent-plus);
+  margin: 0 fluid-width($gutter-width / 2, grid-width($parent, $parent-plus + $gutter-width));
   float: left;
   
   // paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/
@@ -71,7 +73,7 @@ $fluid-grid-css: false !default;
 
 // alter the margins of a column
 @mixin fluid-grid-offset($i: 1, $plus: 0, $side: left, $parent: $columns, $parent-plus: 0) {
-  margin-#{$side}: (fluid-grid-width($i, $gutter-width + $plus) + fluid-width($gutter-width / 2, $parent, $parent-plus));
+  margin-#{$side}: (fluid-grid-width($i, $gutter-width + $plus) + fluid-width($gutter-width / 2, grid-width($parent, $parent-plus + $gutter-width)));
 }
 @mixin fluid-grid-offset-left($i: 1, $plus: 0, $parent: $columns, $parent-plus: 0) {
   @include fluid-grid-offset($i, $plus, left, $parent, $parent-plus);
@@ -104,8 +106,8 @@ $fluid-grid-css: false !default;
     // columns widths
     .fluid-grid-#{$i} {
       width: fluid-grid-width($i);
-      > .fluid-row { margin: 0 fluid-width((-$gutter-width / 2), $i, -$gutter-width); }
-      > .fluid-row > .fluid-column { margin: 0 fluid-width($gutter-width / 2, $i); }
+      > .fluid-row { margin: 0 fluid-width(-$gutter-width / 2, grid-width($i)); }
+      > .fluid-row > .fluid-column { margin: 0 fluid-width($gutter-width / 2, grid-width($i, $gutter-width)); }
       @for $j from 1 through $columns - 1 {
         @if $j <= $i {
           > .fluid-row > .fluid-grid-#{$j} { width: fluid-grid-width($j, 0, $i); }
