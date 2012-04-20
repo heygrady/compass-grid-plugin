@@ -12,9 +12,6 @@ The next better best thing would be fully responsive media query support, but th
 gem install compass-grid-plugin
 ```
 
-### Use a Gemfile
-
-
 ### Existing Compass Projects
 You can include it in any existing Compass project by including the grid in your config.rb file.
 
@@ -27,7 +24,7 @@ require 'compass-grid'
 You can install the grid plugin as part of a new Compass project
 
 ```
-compass create ./my_project -r compass-grid -u compass-grid
+compass create my_project -r compass-grid --u compass-grid
 ```
 
 ## Fixed Grid Usage
@@ -50,7 +47,7 @@ The primary grid is a fixed, pixel grid. This grid is ideal for designs that do 
 
 ### Mixins
 - **grid( $i, [$plus: 0] )** - Mixin for applying widths to a column. The *$plus* argument can be used to alter the width to account for borders or padding.
-- **grid-page( [$i: $grid-columns], [$plus: 0] )** - Mixin for declaring a page element. *$i* is *$columns* by default but can be altered. The *$plus* argument can be used to alter the width to account for borders or padding.
+- **grid-page( [$i: $grid-columns], [$plus: 0] )** - Mixin for declaring a page element. *$i* is *$grid-columns* by default but can be altered. The *$plus* argument can be used to alter the width to account for borders or padding.
 - **grid-row( [$page: false] )** - Mixing for declaring a column container. The *$page* argument is removing the negative margins when directly inside a page element.
 - **grid-column( [$i: false], [$plus: 0] )** - Mixin for declaring a column. Specifying *$i* will call the *grid* mixin. The *$plus* argument is passed to the *grid* mixin if *i* is also specified.
 - **grid-offset( [$i: 1], [$plus: 0], [$side] )** - Mixin for altering the left or right margin on a column. Useful for adding empty columns before or after a column. The *$i* argument specifies the width of the offset in columns. The *$plus* argument can be used to alter the width. *$side* can be right, left, top or bottom (although right and left are the most useful).
@@ -75,7 +72,7 @@ The fluid grid uses the variable from the fixed grid module
 
 ### Mixins
 - **fluid( $i, [$plus: 0], [$parent: $grid-columns], [$parent-plus: 0] )** - Mixin for applying widths to a column. The *$plus* argument can be used to alter the width to account for borders or padding.
-- **fluid-page( [$i: $grid-columns], [$plus: 0], [$use-max-width: true] )** - Mixin for declaring a page element. *$i* is *$columns* by default but can be altered. The *$plus* argument can be used to alter the width to account for borders or padding.
+- **fluid-page( [$i: $grid-columns], [$plus: 0], [$use-max-width: true] )** - Mixin for declaring a page element. *$i* is *$grid-columns* by default but can be altered. The *$plus* argument can be used to alter the width to account for borders or padding.
 - **fluid-row( [$page: false], [$parent: $grid-columns], [$parent-plus: 0] )** - Mixing for declaring a column container. The *$page* argument is removing the negative margins when directly inside a page element.
 - **fluid-column( [$i: false], [$plus: 0], [$parent: $grid-columns], [$parent-plus: 0] )** - Mixin for declaring a column. Specifying *$i* will call the *grid* mixin. The *$plus* argument is passed to the *grid* mixin if *i* is also specified.
 - **fluid-offset( [$i: 1], [$plus: 0], [$side], [$parent: $grid-columns], [$parent-plus: 0] )** - Mixin for altering the left or right margin on a column. Useful for adding empty columns before or after a column. The *$i* argument specifies the width of the offset in columns. The *$plus* argument can be used to alter the width. *$side* can be right, left, top or bottom (although right and left are the most useful).
