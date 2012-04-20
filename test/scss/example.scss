@@ -1,5 +1,6 @@
 // import the grid
-@import "../../_grid.scss";
+@import "grid";
+@include grid-css;
 
 // establishes page width and centers
 #container {
@@ -13,9 +14,9 @@
 
 // header and footer don't have columns in this example
 #container > header, #container > footer {
-  margin: 0 $gutter-width/2; // margins, like full-width columns
+  margin: 0 $grid-gutter-width/2; // margins, like full-width columns
   border: 1px solid black;
-  margin-bottom: $gutter-width;
+  margin-bottom: $grid-gutter-width;
 }
 
 // side columns
@@ -31,7 +32,7 @@
   // sections in the main column are rows
   > section {
     @include grid-row;
-    margin-bottom: $gutter-width;
+    margin-bottom: $grid-gutter-width;
   }
 
   // hero sections don't have columns in this example

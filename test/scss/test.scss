@@ -1,31 +1,30 @@
 // import the grid
-$grid-css: true; // turn on the generic styles
-@import "../../_grid.scss";
+@import "grid";
+@include grid-css;
 
 .column {
   background-color: #ccc;
-  margin-bottom: $gutter-width;
+  margin-bottom: $grid-gutter-width;
 }
 
 .borders {
   .column {
     border: 2px solid black;
   }
-  @for $i from 1 through $columns {
+  @for $i from 1 through $grid-columns {
     .grid-#{$i} { width: grid-width($i, -4px); }
   }
 }
 
 .padding {
   .column {
-    padding: 0 $gutter-width/2;
+    padding: 0 $grid-gutter-width/2;
   }
-  @for $i from 1 through $columns {
-    .grid-#{$i} { width: grid-width($i, -$gutter-width); }
+  @for $i from 1 through $grid-columns {
+    .grid-#{$i} { width: grid-width($i, -$grid-gutter-width); }
   }
 }
 
-// add a clearfix rule, requires compass
 // add a clearfix rule, requires compass
 @import "compass/utilities/general/clearfix";
 .clearfix { @include pie-clearfix; }

@@ -11,17 +11,15 @@
 @include h5bp-forms;
 @include h5bp-tables;
 
-// set the grid variables
-$grid-css: true; // turn on the generic styles
-$fluid-grid-css: true; // turn on the generic styles
-
 // import the grid
-@import "../../_grid.scss";
-@import "../../fluid-grid.scss";
+@import "grid";
+@import "grid/fluid";
+@include grid-css;
+@include fluid-css;
 
 .column {
   background-color: #ccc;
-  margin-bottom: $gutter-width;
+  margin-bottom: $grid-gutter-width;
   .column {
     background-color: darken(#ccc, 10%);
     margin-bottom: 0;
@@ -35,7 +33,7 @@ $fluid-grid-css: true; // turn on the generic styles
 }
 .fluid-column {
   background-color: #ccc;
-  margin-bottom: $gutter-width;
+  margin-bottom: $grid-gutter-width;
   .fluid-column {
     background-color: darken(#ccc, 15%);
     margin-bottom: 0;
@@ -52,21 +50,19 @@ $fluid-grid-css: true; // turn on the generic styles
   .column, .fluid-column {
     border: 2px solid black;
   }
-  @for $i from 1 through $columns {
+  @for $i from 1 through $grid-columns {
     .grid-#{$i} { width: grid-width($i, -4px); }
   }
 }
 
 .padding {
   .column, .fluid-column {
-    padding: 0 $gutter-width/2;
+    padding: 0 $grid-gutter-width/2;
   }
-  @for $i from 1 through $columns {
-    .grid-#{$i} { width: grid-width($i, -$gutter-width); }
+  @for $i from 1 through $grid-columns {
+    .grid-#{$i} { width: grid-width($i, -$grid-gutter-width); }
   }
 }
 
-// add a clearfix rule, requires compass
-// add a clearfix rule, requires compass
-@import "compass/utilities/general/clearfix";
-.clearfix { @include pie-clearfix; }
+
+@include h5bp-helpers;

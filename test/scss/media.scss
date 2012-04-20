@@ -11,29 +11,27 @@
 @include h5bp-forms;
 @include h5bp-tables;
 
-// set the grid variables
-$grid-css: true; // turn on the generic styles
-$fluid-grid-css: true; // turn on the generic styles
-
 // import the grid
-@import "../../_grid.scss";
-@import "../../fluid-grid.scss";
+@import "grid";
+@import "grid/fluid";
+@include grid-css;
+@include fluid-css;
 
 // generic styles
-.float-left, .float-right { margin-bottom: ($gutter-width / 2); }
-.float-left { float: left; margin-right: ($gutter-width / 2); }
-.float-right { float: right; margin-left: ($gutter-width / 2); }
+.float-left, .float-right { margin-bottom: ($grid-gutter-width / 2); }
+.float-left { float: left; margin-right: ($grid-gutter-width / 2); }
+.float-right { float: right; margin-left: ($grid-gutter-width / 2); }
 
 // set up main layout
 header, #main, footer {
 	@include grid-page();
 }
 header, footer {
-	width: grid-width(12);
+	width: grid-column-width(12);
 }
 header {
 	background-color: blue;
-	height: grid-width(1.5)
+	height: grid-column-width(1.5)
 }
 footer {
 	background-color: #ccc;
@@ -55,7 +53,7 @@ footer {
 	aside {
 		@include grid-column(3);
 		.box img {
-			width: grid-width(3);
+			width: grid-column-width(3);
 		}
 	}
 }
@@ -69,36 +67,36 @@ footer {
 @media only screen and (min-width: 0px) {
 	.measure { background-color: red; }
 	header, #main, footer {
-		@include fluid-grid-page();
+		@include fluid-page();
 	}
 	header, footer {
 		max-width: none;
 		width: auto;
-		margin: 0 fluid-width($gutter-width/2, grid-width(4, $gutter-width));
+		margin: 0 fluid-width($grid-gutter-width/2, grid-column-width(4, $grid-gutter-width));
 	}
 	.left-column {
-		@include fluid-grid-column(4, $parent: 4);
+		@include fluid-column(4, $parent: 4);
 	}
 	.main-column {
-		@include fluid-grid-column(4, $parent: 4);
+		@include fluid-column(4, $parent: 4);
 		section {
-			@include fluid-grid-row();
+			@include fluid-row();
 		}
 		section.intro {
 			margin: 0;
 		}
 		article {
-			@include fluid-grid-column(4, $parent: 4);
+			@include fluid-column(4, $parent: 4);
 
-			.float-left, .float-right { margin-bottom: fluid-width($gutter-width / 2, grid-width(4)); }
+			.float-left, .float-right { margin-bottom: fluid-width($grid-gutter-width / 2, grid-column-width(4)); }
 			.float-left { float: none; margin-right: 0; }
 			.float-right { float: none; margin-left: 0; }
-			img.grid-3 { @include fluid-grid(4, $parent: 4, $parent-plus: -$gutter-width); }
+			img.grid-3 { @include fluid(4, $parent: 4, $parent-plus: -$grid-gutter-width); }
 		}
 		aside {
-			@include fluid-grid-column(4, $parent: 4);
+			@include fluid-column(4, $parent: 4);
 			.box img {
-				width: fluid-grid-width(4, $parent: 4, $parent-plus: -$gutter-width);
+				width: fluid-column-width(4, $parent: 4, $parent-plus: -$grid-gutter-width);
 			}
 		}
 	}
@@ -119,35 +117,35 @@ footer {
 @media only screen and (min-width: 480px) {
 	.measure { background-color: yellow; }
 	header, #main, footer {
-		@include fluid-grid-page();
+		@include fluid-page();
 	}
 	header, footer {
 		max-width: none;
 		width: auto;
-		margin: 0 fluid-width($gutter-width/2, grid-width(6, $gutter-width));
+		margin: 0 fluid-width($grid-gutter-width/2, grid-column-width(6, $grid-gutter-width));
 	}
 	.left-column {
-		@include fluid-grid-column(6, $parent: 6);
+		@include fluid-column(6, $parent: 6);
 	}
 	.main-column {
-		@include fluid-grid-column(6, $parent: 6);
+		@include fluid-column(6, $parent: 6);
 		section {
-			@include fluid-grid-row();
+			@include fluid-row();
 		}
 		section.intro {
 			margin: 0;
 		}
 		article {
-			@include fluid-grid-column(6, $parent: 6);
-			.float-left, .float-right { margin-bottom: fluid-width($gutter-width / 2, grid-width(6)); }
-			.float-left { float: left; margin-right: fluid-width($gutter-width / 2, grid-width(6)); }
-			.float-right { float: right; margin-left: fluid-width($gutter-width / 2, grid-width(6)); }
-			img.grid-3 { @include fluid-grid(3, $parent: 6, $parent-plus: -$gutter-width); }
+			@include fluid-column(6, $parent: 6);
+			.float-left, .float-right { margin-bottom: fluid-width($grid-gutter-width / 2, grid-column-width(6)); }
+			.float-left { float: left; margin-right: fluid-width($grid-gutter-width / 2, grid-column-width(6)); }
+			.float-right { float: right; margin-left: fluid-width($grid-gutter-width / 2, grid-column-width(6)); }
+			img.grid-3 { @include fluid(3, $parent: 6, $parent-plus: -$grid-gutter-width); }
 		}
 		aside {
-			@include fluid-grid-column(6, $parent: 6);
+			@include fluid-column(6, $parent: 6);
 			.box img {
-				width: fluid-grid-width(6, $parent: 6, $parent-plus: -$gutter-width);
+				width: fluid-column-width(6, $parent: 6, $parent-plus: -$grid-gutter-width);
 			}
 		}
 	}
@@ -167,35 +165,35 @@ footer {
 @media only screen and (min-width: 600px) {
 	.measure { background-color: blue; color: white; }
 	header, #main, footer {
-		@include fluid-grid-page();
+		@include fluid-page();
 	}
 	header, footer {
 		max-width: none;
 		width: auto;
-		margin: 0 fluid-width($gutter-width/2, grid-width(8, $gutter-width));
+		margin: 0 fluid-width($grid-gutter-width/2, grid-column-width(8, $grid-gutter-width));
 	}
 	.left-column {
-		@include fluid-grid-column(3, $parent: 8);
+		@include fluid-column(3, $parent: 8);
 	}
 	.main-column {
-		@include fluid-grid-column(5, $parent: 8);
+		@include fluid-column(5, $parent: 8);
 		section {
-			@include fluid-grid-row();
+			@include fluid-row();
 		}
 		section.intro {
 			margin: 0;
 		}
 		article {
-			@include fluid-grid-column(5, $parent: 5);
-			.float-left, .float-right { margin-bottom: fluid-width($gutter-width / 2, grid-width(5)); }
-			.float-left { float: left; margin-right: fluid-width($gutter-width / 2, grid-width(5)); }
-			.float-right { float: right; margin-left: fluid-width($gutter-width / 2, grid-width(5)); }
-			img.grid-3 { @include fluid-grid(3, $parent: 5, $parent-plus: -$gutter-width); }
+			@include fluid-column(5, $parent: 5);
+			.float-left, .float-right { margin-bottom: fluid-width($grid-gutter-width / 2, grid-column-width(5)); }
+			.float-left { float: left; margin-right: fluid-width($grid-gutter-width / 2, grid-column-width(5)); }
+			.float-right { float: right; margin-left: fluid-width($grid-gutter-width / 2, grid-column-width(5)); }
+			img.grid-3 { @include fluid(3, $parent: 5, $parent-plus: -$grid-gutter-width); }
 		}
 		aside {
-			@include fluid-grid-column(5, $parent: 5);
+			@include fluid-column(5, $parent: 5);
 			.box img {
-				width: fluid-grid-width(5, $parent: 5, $parent-plus: -$gutter-width);
+				width: fluid-column-width(5, $parent: 5, $parent-plus: -$grid-gutter-width);
 			}
 		}
 	}
@@ -208,35 +206,35 @@ footer {
 	// skip
 	.measure { background-color: purple; color: white; }
 	header, #main, footer {
-		@include fluid-grid-page();
+		@include fluid-page();
 	}
 	header, footer {
 		max-width: none;
 		width: auto;
-		margin: 0 fluid-width($gutter-width/2, grid-width(9, $gutter-width));
+		margin: 0 fluid-width($grid-gutter-width/2, grid-column-width(9, $grid-gutter-width));
 	}
 	.left-column {
-		@include fluid-grid-column(3, $parent: 9);
+		@include fluid-column(3, $parent: 9);
 	}
 	.main-column {
-		@include fluid-grid-column(6, $parent: 9);
+		@include fluid-column(6, $parent: 9);
 		section {
-			@include fluid-grid-row();
+			@include fluid-row();
 		}
 		section.intro {
 			margin: 0;
 		}
 		article {
-			@include fluid-grid-column(6, $parent: 6);
-			.float-left, .float-right { margin-bottom: fluid-width($gutter-width / 2, grid-width(6)); }
-			.float-left { float: left; margin-right: fluid-width($gutter-width / 2, grid-width(6)); }
-			.float-right { float: right; margin-left: fluid-width($gutter-width / 2, grid-width(6)); }
-			img.grid-3 { @include fluid-grid(3, $parent: 6, $parent-plus: -$gutter-width); }
+			@include fluid-column(6, $parent: 6);
+			.float-left, .float-right { margin-bottom: fluid-width($grid-gutter-width / 2, grid-column-width(6)); }
+			.float-left { float: left; margin-right: fluid-width($grid-gutter-width / 2, grid-column-width(6)); }
+			.float-right { float: right; margin-left: fluid-width($grid-gutter-width / 2, grid-column-width(6)); }
+			img.grid-3 { @include fluid(3, $parent: 6, $parent-plus: -$grid-gutter-width); }
 		}
 		aside {
-			@include fluid-grid-column(6, $parent: 6);
+			@include fluid-column(6, $parent: 6);
 			.box img {
-				width: fluid-grid-width(6, $parent: 6, $parent-plus: -$gutter-width);
+				width: fluid-column-width(6, $parent: 6, $parent-plus: -$grid-gutter-width);
 			}
 		}
 	}
@@ -249,35 +247,35 @@ footer {
 	// skip
 	.measure { background-color: blue; color: white; }
 	header, #main, footer {
-		@include fluid-grid-page();
+		@include fluid-page();
 	}
 	header, footer {
 		max-width: none;
 		width: auto;
-		margin: 0 fluid-width($gutter-width/2, grid-width(11, $gutter-width));
+		margin: 0 fluid-width($grid-gutter-width/2, grid-column-width(11, $grid-gutter-width));
 	}
 	.left-column {
-		@include fluid-grid-column(3, $parent: 11);
+		@include fluid-column(3, $parent: 11);
 	}
 	.main-column {
-		@include fluid-grid-column(8, $parent: 11);
+		@include fluid-column(8, $parent: 11);
 		section {
-			@include fluid-grid-row();
+			@include fluid-row();
 		}
 		section.intro {
 			margin: 0;
 		}
 		article {
-			@include fluid-grid-column(5, $parent: 8);
-			.float-left, .float-right { margin-bottom: fluid-width($gutter-width / 2, grid-width(5)); }
-			.float-left { float: left; margin-right: fluid-width($gutter-width / 2, grid-width(5)); }
-			.float-right { float: right; margin-left: fluid-width($gutter-width / 2, grid-width(5)); }
-			img.grid-3 { @include fluid-grid(3, $parent: 5, $parent-plus: -$gutter-width); }
+			@include fluid-column(5, $parent: 8);
+			.float-left, .float-right { margin-bottom: fluid-width($grid-gutter-width / 2, grid-column-width(5)); }
+			.float-left { float: left; margin-right: fluid-width($grid-gutter-width / 2, grid-column-width(5)); }
+			.float-right { float: right; margin-left: fluid-width($grid-gutter-width / 2, grid-column-width(5)); }
+			img.grid-3 { @include fluid(3, $parent: 5, $parent-plus: -$grid-gutter-width); }
 		}
 		aside {
-			@include fluid-grid-column(3, $parent: 8);
+			@include fluid-column(3, $parent: 8);
 			.box img {
-				width: fluid-grid-width(3, $parent: 3, $parent-plus: -$gutter-width);
+				width: fluid-column-width(3, $parent: 3, $parent-plus: -$grid-gutter-width);
 			}
 		}
 	}
@@ -293,7 +291,7 @@ footer {
 		@include grid-page();
 	}
 	header, footer {
-		width: grid-width(12);
+		width: grid-column-width(12);
 	}
 	.left-column {
 		@include grid-column(3);
@@ -308,15 +306,15 @@ footer {
 		}
 		article {
 			@include grid-column(6);
-			.float-left, .float-right { margin-bottom:($gutter-width / 2); }
-			.float-left { float: left; margin-right: ($gutter-width / 2); }
-			.float-right { float: right; margin-left: ($gutter-width / 2); }
+			.float-left, .float-right { margin-bottom:($grid-gutter-width / 2); }
+			.float-left { float: left; margin-right: ($grid-gutter-width / 2); }
+			.float-right { float: right; margin-left: ($grid-gutter-width / 2); }
 			img.grid-3 { @include grid(3); }
 		}
 		aside {
 			@include grid-column(3);
 			.box img {
-				width: grid-width(3);
+				width: grid-column-width(3);
 			}
 		}
 	}
