@@ -12,8 +12,6 @@ Gem::Specification.new do |s|
   s.authors     = ["Grady Kuhnline"]
   s.email       = ["github@heygrady.net"]
 
-  s.rubyforge_project = "compass-grid"
-
   s.files         = `git ls-files`.split("\n")
   s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
   s.executables   = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
