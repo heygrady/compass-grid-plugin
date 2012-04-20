@@ -1,7 +1,7 @@
-stylesheet 'screen.scss', :media => "screen, projection"
-stylesheet '_base.scss'
-
 description "Sass Grid based on the 1KB CSS Grid"
+
+stylesheet 'screen.scss', :media => "screen, projection"
+stylesheet 'partials/_base.scss'
 
 help %Q{
 Please see the website for all documentation and tutorials:

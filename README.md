@@ -6,8 +6,37 @@ Simple grid system based on [the 1KB CSS Grid](http://1kbgrid.com/) designed to 
 
 The next better best thing would be fully responsive media query support, but there's [some limitations in Sass as a language](https://github.com/nex3/sass/issues/116#issuecomment-5166163) that make that difficult to do in a Compass plugin.
 
+## Installation
+###Install the Ruby Gem.
+```
+gem install compass-grid-plugin
+```
+
+### Use a Gemfile
+
+
+### Existing Compass Projects
+You can include it in any existing Compass project by including the grid in your config.rb file.
+
+```ruby
+# Require any additional compass plugins here.
+require 'compass-grid'
+```
+
+### New Compass Projects
+You can install the grid plugin as part of a new Compass project
+
+```
+compass create ./my_project -r compass-grid -u compass-grid
+```
+
 ## Fixed Grid Usage
 The primary grid is a fixed, pixel grid. This grid is ideal for designs that do not require responsive design.
+
+```scss
+// import the grid
+@import "grid";
+```
 
 ### Variables 
 - **$grid-column-width**: *60px* - The width of 1 column
@@ -31,6 +60,11 @@ The primary grid is a fixed, pixel grid. This grid is ideal for designs that do 
 
 ## Fluid Grid Usage
 This is a fluid version of the grid that uses percentages for widths. This grid is ideal for responsive designs that need to scale depending on the device. The fluid grid is more complex because percentage widths depend on their context for meaning. Every function and mixin is similar to the fixed grid but there are two additional variables to provide context.
+
+```scss
+// import the fluid grid
+@import "grid/fluid";
+```
 
 ### Variables
 The fluid grid uses the variable from the fixed grid module
