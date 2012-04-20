@@ -24,7 +24,7 @@ require 'compass-grid'
 You can install the grid plugin as part of a new Compass project
 
 ```
-compass create my_project -r compass-grid --u compass-grid
+compass create my_project -r compass-grid -u compass-grid
 ```
 
 ## Fixed Grid Usage
