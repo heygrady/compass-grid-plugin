@@ -3,7 +3,7 @@ $:.push File.expand_path("../lib", __FILE__)
 require "compass/grid/version"
 
 Gem::Specification.new do |s|
-  s.name        = 'compass-grid'
+  s.name        = 'compass-grid-plugin'
   s.version     = Compass::Grid::VERSION
   s.platform    = Gem::Platform::RUBY
   s.summary     = "Compass extension based on the 1KB CSS Grid"
