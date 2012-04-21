@@ -1,6 +1,6 @@
 // import the grid
 @import "grid";
-@include grid-css;
+$grid-clearfix-class: false;
 
 // establishes page width and centers
 #container {
