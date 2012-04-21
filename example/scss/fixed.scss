@@ -24,7 +24,3 @@
     .grid-#{$i} { width: grid-width($i, -$grid-gutter-width); }
   }
 }
-
-// add a clearfix rule, requires compass
-@import "compass/utilities/general/clearfix";
-.clearfix { @include pie-clearfix; }

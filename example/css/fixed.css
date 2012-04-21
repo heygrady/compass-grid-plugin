@@ -108,6 +108,3 @@
 .padding .grid-10 { width: grid-width(10, -20px); }
 .padding .grid-11 { width: grid-width(11, -20px); }
 .padding .grid-12 { width: grid-width(12, -20px); }
-
-.clearfix, .page, .row, .page > .row { *zoom: 1; }
-.clearfix:after, .page:after, .row:after, .page > .row:after { content: ""; display: table; clear: both; }

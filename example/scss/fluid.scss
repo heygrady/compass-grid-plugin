@@ -1,16 +1,3 @@
-// H5BP
-@import "h5bp";
-@include h5bp-display;
-@include h5bp-base;
-//@include h5bp-selection;
-@include h5bp-links;
-@include h5bp-typography;
-@include h5bp-lists;
-@include h5bp-embeds;
-@include h5bp-figures;
-@include h5bp-forms;
-@include h5bp-tables;
-
 // import the grid
 @import "grid";
 @import "grid/fluid";
@@ -63,6 +50,3 @@
     .grid-#{$i} { width: grid-width($i, -$grid-gutter-width); }
   }
 }
-
-
-@include h5bp-helpers;

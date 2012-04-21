@@ -1,21 +1,6 @@
-// H5BP
-@import "h5bp";
-@include h5bp-display;
-@include h5bp-base;
-//@include h5bp-selection;
-@include h5bp-links;
-@include h5bp-typography;
-@include h5bp-lists;
-@include h5bp-embeds;
-@include h5bp-figures;
-@include h5bp-forms;
-@include h5bp-tables;
-
 // import the grid
 @import "grid";
 @import "grid/fluid";
-@include grid-css;
-@include fluid-css;
 
 // generic styles
 .float-left, .float-right { margin-bottom: ($grid-gutter-width / 2); }
@@ -62,7 +47,7 @@ footer {
 // Responsive
 //-----------------------------------
 // Old/Small Android
-// 0 to 320px
+// smaller than 320px
 // 3 columns
 @media only screen and (min-width: 0px) {
 	.measure { background-color: red; }
@@ -343,5 +328,3 @@ footer {
 @media only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (-o-min-device-pixel-ratio: 3/2), only screen and (min-device-pixel-ratio: 1.5) {
 
 }
-
-@include h5bp-helpers;
