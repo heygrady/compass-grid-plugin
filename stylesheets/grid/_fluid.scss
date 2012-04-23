@@ -13,8 +13,14 @@
 //-----------------------------------
 
 // apply a width to a column
-@mixin fluid($i, $plus: 0, $parent: $grid-columns, $parent-plus: 0) {
+@mixin fluid($i, $plus: 0, $parent: $grid-columns, $parent-plus: 0, $with-gutters: false) {
   width: fluid-column-width($i, $plus, $parent, $parent-plus);
+  @if $with-gutters { @include fluid-gutters($parent, $parent-plus); }
+}
+
+// apply standard gutters to a column or row
+@mixin fluid-gutters($parent: $grid-columns, $parent-plus: 0, $row: false) {
+  margin: 0 fluid-width($grid-gutter-width / 2 * if($row, -1, 1), grid-column-width($parent, $parent-plus + $grid-gutter-width));
 }
 
 // return a percentage width relative to a column width
@@ -56,7 +62,7 @@
   @if $page {
     margin: 0 0;
   } @else {
-    margin: 0 fluid-width(-$grid-gutter-width / 2, grid-column-width($parent, $parent-plus));
+    @include fluid-gutters($parent, $parent-plus, true);
   }
 }
 
@@ -65,9 +71,9 @@
 //-----------------------------------
 
 // specify a column
-@mixin fluid-column($i: false, $plus: 0, $parent: $grid-columns, $parent-plus: 0) {
+@mixin fluid-column($i: false, $plus: 0, $parent: $grid-columns, $parent-plus: 0, $with-gutters: true) {
   @include box-sizing(border-box);
-  margin: 0 fluid-width($grid-gutter-width / 2, grid-column-width($parent, $parent-plus + $grid-gutter-width));
+  @if $with-gutters { @include fluid-gutters($parent, $parent-plus); }
   float: left;
   
   @if $grid-support-for-ie6 { display: inline; }
@@ -80,9 +86,13 @@
 @mixin fluid-offset($i: 1, $plus: 0, $side: left, $parent: $grid-columns, $parent-plus: 0) {
   margin-#{$side}: (fluid-column-width($i, $grid-gutter-width + $plus) + fluid-width($grid-gutter-width / 2, grid-column-width($parent, $parent-plus + $grid-gutter-width)));
 }
+
+// convenience mixin for left offsets
 @mixin fluid-offset-left($i: 1, $plus: 0, $parent: $grid-columns, $parent-plus: 0) {
   @include fluid-offset($i, $plus, left, $parent, $parent-plus);
 }
+
+// convenience mixin for right offsets
 @mixin fluid-offset-right($i: 1, $plus: 0, $parent: $grid-columns, $parent-plus: 0) {
   @include fluid-offset($i, $plus, right, $parent, $parent-plus);
 }
@@ -109,8 +119,8 @@
     // columns widths
     .fluid-#{$i} {
       width: fluid-column-width($i);
-      > .fluid-row { margin: 0 fluid-width(-$grid-gutter-width / 2, grid-column-width($i)); }
-      > .fluid-row > .fluid-column { margin: 0 fluid-width($grid-gutter-width / 2, grid-column-width($i, $grid-gutter-width)); }
+      > .fluid-row { @include fluid-gutters($i, $row: true); }
+      > .fluid-row > .fluid-column { @include fluid-gutters($i); }
       @for $j from 1 through $grid-columns - 1 {
         @if $j <= $i {
           > .fluid-row > .fluid-#{$j} { width: fluid-column-width($j, 0, $i); }
