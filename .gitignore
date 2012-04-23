@@ -1,8 +1,5 @@
 
-/project.sublime-project
-/project.sublime-workspace
-/test/.sass-cache
-/test/css/test.css
-/test/css/example.css
-/compass-grid-0.0.1.gem
-/compass-grid-plugin-0.0.1.gem
+*.sublime-*
+*.sass-cache
+*.css
+*.gem
