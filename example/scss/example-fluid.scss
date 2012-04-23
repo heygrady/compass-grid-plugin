@@ -1,4 +1,4 @@
-$grid-clearfix-class: false;
+$grid-clearfix-class: false; // don't auto create the clearfix
 
 // import the grid
 @import "grid/fluid";
@@ -10,7 +10,7 @@ $grid-clearfix-class: false;
 
 // main page sections
 [role="main"] {
-  @include fluid-row(true); //true indicates a row is directly inside a page
+  @include fluid-row(true); // row is directly inside a page
 }
 
 // header and footer don't have columns in this example
@@ -20,14 +20,19 @@ header, footer {
   margin-bottom: $grid-gutter-width;
 }
 
+// column rules so that float and border-box aren't repeated
+.column {
+  @include fluid-column($with-gutters: false); // omit gutters
+}
+
 // side columns
 #left-column, #right-column {
-  @include fluid-column($with-gutters: false);
+  @extend .column;
   border: 1px solid red;
 }
 #left-column {
-  @include fluid(3, 0); //3 columns wide, don't adjust for border
-  @include fluid-gutters; // normal gutters
+  @include fluid(3); //3 columns wide, don't adjust for border
+  @include fluid-gutters; // gutters
 }
 #right-column {
   @include fluid(3, 0, 9); //3 columns wide, 9 column parent, don't adjust for border
@@ -36,7 +41,9 @@ header, footer {
 
 // main column
 #main-column {
-  @include fluid-column(9); //9 columns wide
+  @extend .column;
+  @include fluid(9); //9 columns wide
+  @include fluid-gutters; // gutters
   
   // sections in the main column are rows
   > section {
@@ -54,8 +61,11 @@ header, footer {
 
 // center column
 #content {
-  @include fluid-column(6, 0, 9); //6 columns wide, adjust for border, don't adjust for border
+  @extend .column;
+  @include fluid(6, 0, 9); //6 columns wide, don't adjust for border
+  @include fluid-gutters(9); // gutters
   border: 1px solid blue;
 }
 
+// define our own clearfix
 .clearfix { @include pie-clearfix; }

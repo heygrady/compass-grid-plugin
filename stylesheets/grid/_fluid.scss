@@ -20,7 +20,7 @@
 
 // apply standard gutters to a column or row
 @mixin fluid-gutters($parent: $grid-columns, $parent-plus: 0, $row: false) {
-  margin: 0 fluid-width($grid-gutter-width / 2 * if($row, -1, 1), grid-column-width($parent, $parent-plus + $grid-gutter-width));
+  margin: 0 fluid-width($grid-gutter-width / 2 * if($row, -1, 1), grid-column-width($parent, $parent-plus + if($row, 0, $grid-gutter-width)));
 }
 
 // return a percentage width relative to a column width
