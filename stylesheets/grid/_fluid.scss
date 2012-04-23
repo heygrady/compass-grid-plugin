@@ -17,14 +17,19 @@
   width: fluid-column-width($i, $plus, $parent, $parent-plus);
 }
 
-// return a percentage width relative to columns
+// return a percentage width relative to a column width
 @function fluid-column-width($i, $plus: 0, $parent: $grid-columns, $parent-plus: 0) {
-  @return percentage(grid-column-width($i, $plus) / grid-column-width($parent, $parent-plus + $grid-gutter-width));
+  @return fluid-width(grid-column-width($i, $plus), grid-column-width($parent, $parent-plus + $grid-gutter-width));
 }
 
-// return a percentage width relative to lengths
+// return a percentage width relative to a parent width
 @function fluid-width($width, $parent-width: grid-column-width($grid-columns, $grid-gutter-width)) {
   @return percentage($width / $parent-width);
+}
+
+// return a percentage for a half-pixel
+@function fluid-nudge($parent-width: grid-column-width($grid-columns, $grid-gutter-width), $vendor: webkit) {
+  @return percentage(if($vendor == ie, -0.5px, 0.5px) / $parent-width);
 }
 
 
