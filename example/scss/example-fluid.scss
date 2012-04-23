@@ -1,0 +1,61 @@
+$grid-clearfix-class: false;
+
+// import the grid
+@import "grid/fluid";
+
+// establishes page width and centers
+#container {
+  @include fluid-page;
+}
+
+// main page sections
+[role="main"] {
+  @include fluid-row(true); //true indicates a row is directly inside a page
+}
+
+// header and footer don't have columns in this example
+header, footer {
+  @include fluid-gutters; // gutters, like full-width columns
+  border: 1px solid black;
+  margin-bottom: $grid-gutter-width;
+}
+
+// side columns
+#left-column, #right-column {
+  @include fluid-column($with-gutters: false);
+  border: 1px solid red;
+}
+#left-column {
+  @include fluid(3, 0); //3 columns wide, don't adjust for border
+  @include fluid-gutters; // normal gutters
+}
+#right-column {
+  @include fluid(3, 0, 9); //3 columns wide, 9 column parent, don't adjust for border
+  @include fluid-gutters(9); // gutters in a 9 column parent
+}
+
+// main column
+#main-column {
+  @include fluid-column(9); //9 columns wide
+  
+  // sections in the main column are rows
+  > section {
+    @include fluid-row(false, 9);
+    margin-bottom: $grid-gutter-width;
+  }
+
+  // hero sections don't have columns in this example
+  > section.hero {
+    border: 1px solid black;
+    margin-left: 0; // remove the right and left margins because this isn't a row
+    margin-right: 0;
+  }
+}
+
+// center column
+#content {
+  @include fluid-column(6, 0, 9); //6 columns wide, adjust for border, don't adjust for border
+  border: 1px solid blue;
+}
+
+.clearfix { @include pie-clearfix; }

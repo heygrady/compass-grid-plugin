@@ -1,5 +1,4 @@
 // import the grid
-@import "grid";
 @import "grid/fluid";
 @include grid-css;
 @include fluid-css;
@@ -38,7 +37,7 @@
     border: 2px solid black;
   }
   @for $i from 1 through $grid-columns {
-    .grid-#{$i} { width: grid-width($i, -4px); }
+    .grid-#{$i} { width: grid-column-width($i, -4px); }
   }
 }
 
@@ -47,6 +46,6 @@
     padding: 0 $grid-gutter-width/2;
   }
   @for $i from 1 through $grid-columns {
-    .grid-#{$i} { width: grid-width($i, -$grid-gutter-width); }
+    .grid-#{$i} { width: grid-column-width($i, -$grid-gutter-width); }
   }
 }
