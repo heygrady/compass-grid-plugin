@@ -3,6 +3,7 @@
 
 // Ensure grid is included
 @import "grid";
+@import "grid/fluid/helpers";
 
 //-----------------------------------
 // Defaults
@@ -13,29 +14,80 @@
 //-----------------------------------
 
 // apply a width to a column
-@mixin fluid($i, $plus: 0, $parent: $grid-columns, $parent-plus: 0, $with-gutters: false) {
-  width: fluid-column-width($i, $plus, $parent, $parent-plus);
-  @if $with-gutters { @include fluid-gutters($parent, $parent-plus); }
+@mixin fluid($i, $plus: 0, $context: $grid-columns, $context-plus: 0, $with-gutters: false) {
+  width: fluid-column-width($i, $plus, $context, $context-plus);
+  @if $with-gutters { @include fluid-gutters($context, $context-plus); }
 }
 
 // apply standard gutters to a column or row
-@mixin fluid-gutters($parent: $grid-columns, $parent-plus: 0, $row: false) {
-  margin: 0 fluid-width($grid-gutter-width / 2 * if($row, -1, 1), grid-column-width($parent, $parent-plus + if($row, 0, $grid-gutter-width)));
+@mixin fluid-gutters($context: $grid-columns, $context-plus: 0, $row: false) {
+  margin: 0 fluid-gutter-width($context, $context-plus, $row);
+}
+@mixin fluid-row-gutters($context: $grid-columns, $context-plus: 0) {
+  @include fluid-gutters($context, $context-plus, true);
+}
+@mixin fluid-column-gutters($context: $grid-columns, $context-plus: 0) {
+  @include fluid-gutters($context, $context-plus, false);
+  
 }
 
 // return a percentage width relative to a column width
-@function fluid-column-width($i, $plus: 0, $parent: $grid-columns, $parent-plus: 0) {
-  @return fluid-width(grid-column-width($i, $plus), grid-column-width($parent, $parent-plus + $grid-gutter-width));
+@function fluid-column-width($i, $plus: 0, $context: $grid-columns, $context-plus: 0) {
+  @return fluid-width(grid-column-width($i, $plus), fluid-row-width($context, $context-plus));
+}
+
+@function fluid-gutter-width($context: $grid-columns, $context-plus: 0, $row: false) {
+  // rows gutters are relative to a column width, not a row width
+  // subtracting the gutter from the row width fixes it easily enough
+  @if type-of($context-plus == list) and $row {
+    $temp: $context-plus;
+    $context-plus: nth($context-plus, 1) - $grid-gutter-width;
+    @for $i from 2 through length($temp) {
+      $context-plus: join($context-plus, nth($temp));
+    }
+  } @else if $row {
+    $context-plus: $context-plus - $grid-gutter-width;
+  }
+
+  @return fluid-width($grid-gutter-width / 2 * if($row, -1, 1), fluid-row-width($context, $context-plus));
+}
+
+// return the width of a row in pixels taking precision and nesting into account
+// example: width: fluid-parent-width(3 6 9 12, 0 -5 10 0);
+@function fluid-row-width($context, $context-plus: 0) {
+  // check for a list of contexts
+  @if type-of($context) == list {
+    // capture the length of the list
+    $n: length($context);
+
+    // initialize the parent-row scope
+    $context-row: grid-column-width(nth($context, $n), nth-else($context-plus, $n, 0) + $grid-gutter-width);
+    @while $n > 1 {
+      // decrement the list item
+      $n: $n - 1;
+
+      // capture the real percentage for the column and gutter
+      $column-percentage: real-percentage(grid-column-width(nth($context, $n), nth-else($context-plus, $n, 0)), $context-row);
+      $gutter-percentage: real-percentage($grid-gutter-width, $context-row);
+      
+      // calculate the real row-width based on its specified parent
+      $context-row: $context-row * $column-percentage + $context-row * $gutter-percentage;
+    }
+    @return $context-row;
+  }
+
+  // return the normal width if there's no other context given
+  @return grid-column-width($context, $context-plus + $grid-gutter-width);
 }
 
 // return a percentage width relative to a parent width
-@function fluid-width($width, $parent-width: grid-column-width($grid-columns, $grid-gutter-width)) {
-  @return percentage($width / $parent-width);
+@function fluid-width($width, $context-width: grid-column-width($grid-columns, $grid-gutter-width)) {
+  @return percentage($width / $context-width);
 }
 
 // return a percentage for a half-pixel
-@function fluid-nudge($parent-width: grid-column-width($grid-columns, $grid-gutter-width), $vendor: webkit) {
-  @return percentage(if($vendor == ie, -0.5px, 0.5px) / $parent-width);
+@function fluid-nudge($context-width: grid-column-width($grid-columns, $grid-gutter-width), $vendor: webkit) {
+  @return percentage(if($vendor == ie, -0.5px, 0.5px) / $context-width);
 }
 
 
@@ -53,7 +105,7 @@
 }
 
 // specify a container as a row
-@mixin fluid-row($page: false, $parent: $grid-columns, $parent-plus: 0) {
+@mixin fluid-row($page: false, $context: $grid-columns, $context-plus: 0) {
   @extend .clearfix;
   @include box-sizing(border-box);
   width: auto;
@@ -62,7 +114,7 @@
   @if $page {
     margin: 0 0;
   } @else {
-    @include fluid-gutters($parent, $parent-plus, true);
+    @include fluid-row-gutters($context, $context-plus);
   }
 }
 
@@ -71,30 +123,30 @@
 //-----------------------------------
 
 // specify a column
-@mixin fluid-column($i: false, $plus: 0, $parent: $grid-columns, $parent-plus: 0, $with-gutters: true) {
+@mixin fluid-column($i: false, $plus: 0, $context: $grid-columns, $context-plus: 0, $with-gutters: true) {
   @include box-sizing(border-box);
-  @if $with-gutters { @include fluid-gutters($parent, $parent-plus); }
+  @if $with-gutters { @include fluid-column-gutters($context, $context-plus); }
   float: left;
   
   @if $grid-support-for-ie6 { display: inline; }
   
   // apply a width
-  @if $i { @include fluid($i, $plus, $parent, $parent-plus); }
+  @if $i { @include fluid($i, $plus, $context, $context-plus); }
 }
 
 // alter the margins of a column
-@mixin fluid-offset($i: 1, $plus: 0, $side: left, $parent: $grid-columns, $parent-plus: 0) {
-  margin-#{$side}: (fluid-column-width($i, $grid-gutter-width + $plus) + fluid-width($grid-gutter-width / 2, grid-column-width($parent, $parent-plus + $grid-gutter-width)));
+@mixin fluid-offset($i: 1, $plus: 0, $side: left, $context: $grid-columns, $context-plus: 0) {
+  margin-#{$side}: (fluid-column-width($i, $plus) + fluid-gutter-width($context, $context-plus) * 3);
 }
 
 // convenience mixin for left offsets
-@mixin fluid-offset-left($i: 1, $plus: 0, $parent: $grid-columns, $parent-plus: 0) {
-  @include fluid-offset($i, $plus, left, $parent, $parent-plus);
+@mixin fluid-offset-left($i: 1, $plus: 0, $context: $grid-columns, $context-plus: 0) {
+  @include fluid-offset($i, $plus, left, $context, $context-plus);
 }
 
 // convenience mixin for right offsets
-@mixin fluid-offset-right($i: 1, $plus: 0, $parent: $grid-columns, $parent-plus: 0) {
-  @include fluid-offset($i, $plus, right, $parent, $parent-plus);
+@mixin fluid-offset-right($i: 1, $plus: 0, $context: $grid-columns, $context-plus: 0) {
+  @include fluid-offset($i, $plus, right, $context, $context-plus);
 }
 
 //-----------------------------------
@@ -119,8 +171,8 @@
     // columns widths
     .fluid-#{$i} {
       width: fluid-column-width($i);
-      > .fluid-row { @include fluid-gutters($i, $row: true); }
-      > .fluid-row > .fluid-column { @include fluid-gutters($i); }
+      > .fluid-row { @include fluid-row-gutters($i); }
+      > .fluid-row > .fluid-column { @include fluid-column-gutters($i); }
       @for $j from 1 through $grid-columns - 1 {
         @if $j <= $i {
           > .fluid-row > .fluid-#{$j} { width: fluid-column-width($j, 0, $i); }
