@@ -6,9 +6,9 @@ Gem::Specification.new do |s|
   s.name        = 'compass-grid-plugin'
   s.version     = Compass::Grid::VERSION
   s.platform    = Gem::Platform::RUBY
-  s.summary     = "Compass extension based on the 1KB CSS Grid"
-  s.description = "Compass extension based on the 1KB CSS Grid designed to utilize Sass and Compass to remove unnecessary classes from the HTML markup and make customization easier."
-  s.homepage    = 'https://github.com/heygrady/1KB-SCSS-Grid'
+  s.summary     = "Compass grid extension inspired by the 1KB CSS Grid"
+  s.description = "Compass grid extension inspired by the 1KB CSS Grid. Supports fixed and fluid grids. Designed to utilize Sass and Compass to remove unnecessary classes from the HTML markup and make customization easier."
+  s.homepage    = 'https://github.com/heygrady/compass-grid-plugin'
   s.authors     = ["Grady Kuhnline"]
   s.email       = ["github@heygrady.net"]
 
