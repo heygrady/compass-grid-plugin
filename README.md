@@ -6,7 +6,7 @@
 ## About
 Simple grid system inspired by the [the 1KB CSS Grid](http://1kbgrid.com/) designed to utilize [Sass](http://sass-lang.com/) to remove unnecessary classes from the HTML markup and make customization easier. The best part is that it's not exactly 1KB now! Even better than the best part is that it's been extended to support fluid grids as well.
 
-The next better best thing would be fully responsive media query support, but there's [some limitations in Sass as a language](https://github.com/nex3/sass/issues/116#issuecomment-5166163) that make that difficult to do in a Compass plugin. Although there age a few example on how best to support media queries with sass.
+The next better best thing would be fully responsive media query support, but there's [some limitations in Sass as a language](https://github.com/nex3/sass/issues/116#issuecomment-5166163) that make that difficult to do in a Compass plugin. Although there are a few example on how best to support media queries with sass.
 
 - [Responsive Web Design in Sass: Using Media Queries in Sass 3.2](http://thesassway.com/intermediate/responsive-web-design-in-sass-using-media-queries-in-sass-32)
 - [Responsive Web Design in Sass Part 2: Media Queries in Sass](http://thesassway.com/intermediate/responsive-web-design-part-2)
