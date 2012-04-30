@@ -1,7 +1,11 @@
+$fluid-support-for-ie7: true;
+
 // import the grid
-@import "grid/fluid";
+@import "../../stylesheets/grid/fluid";
 @include grid-css;
 @include fluid-css;
+
+//@debug precision();
 
 .column {
   background-color: #ccc;
@@ -32,20 +36,31 @@
   }
 }
 
+.corrected {
+  $context: 11 $grid-columns;
+  /*.fluid-11 .fluid-1 { @include fluid(1, 0, $context, 0, true); }
+  .fluid-11 .fluid-10 { @include fluid(10, 0, $context, 0, true);
+    .fluid-1 { @include fluid(1, 0, join(10, $context), 0, true); }
+    .fluid-9 { @include fluid(9, 0, join(10, $context), 0, true);
+   
+      .fluid-1 { @include fluid(1, 0, join(9 10, $context), 0, true); }
+      .fluid-8 { @include fluid(8, 0, join(9 10, $context), 0, true); }
+      .fluid-row { @include fluid-row-gutters(join(9 10, $context)); }
+    }
+    .fluid-row { @include fluid-row-gutters(join(10, $context)); }
+  }
+  .fluid-11 .fluid-row { @include fluid-row-gutters($context); }
+  */
+}
+
 .borders {
   .column, .fluid-column {
     border: 2px solid black;
-  }
-  @for $i from 1 through $grid-columns {
-    .grid-#{$i} { width: grid-column-width($i, -4px); }
   }
 }
 
 .padding {
   .column, .fluid-column {
     padding: 0 $grid-gutter-width/2;
-  }
-  @for $i from 1 through $grid-columns {
-    .grid-#{$i} { width: grid-column-width($i, -$grid-gutter-width); }
   }
 }

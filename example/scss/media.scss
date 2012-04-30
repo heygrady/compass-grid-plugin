@@ -60,10 +60,10 @@ footer {
 		margin: 0 fluid-width($grid-gutter-width/2, grid-column-width(4, $grid-gutter-width));
 	}
 	.left-column {
-		@include fluid-column(4, $parent: 4);
+		@include fluid-column(4, $context: 4);
 	}
 	.main-column {
-		@include fluid-column(4, $parent: 4);
+		@include fluid-column(4, $context: 4);
 		section {
 			@include fluid-row();
 		}
@@ -71,17 +71,17 @@ footer {
 			margin: 0;
 		}
 		article {
-			@include fluid-column(4, $parent: 4);
+			@include fluid-column(4, $context: 4);
 
 			.float-left, .float-right { margin-bottom: fluid-width($grid-gutter-width / 2, grid-column-width(4)); }
 			.float-left { float: none; margin-right: 0; }
 			.float-right { float: none; margin-left: 0; }
-			img.grid-3 { @include fluid(4, $parent: 4, $parent-plus: -$grid-gutter-width); }
+			img.grid-3 { @include fluid(4, $context: 4, $context-plus: -$grid-gutter-width); }
 		}
 		aside {
-			@include fluid-column(4, $parent: 4);
+			@include fluid-column(4, $context: 4);
 			.box img {
-				width: fluid-column-width(4, $parent: 4, $parent-plus: -$grid-gutter-width);
+				width: fluid-column-width(4, $context: 4, $context-plus: -$grid-gutter-width);
 			}
 		}
 	}
@@ -110,10 +110,10 @@ footer {
 		margin: 0 fluid-width($grid-gutter-width/2, grid-column-width(6, $grid-gutter-width));
 	}
 	.left-column {
-		@include fluid-column(6, $parent: 6);
+		@include fluid-column(6, $context: 6);
 	}
 	.main-column {
-		@include fluid-column(6, $parent: 6);
+		@include fluid-column(6, $context: 6);
 		section {
 			@include fluid-row();
 		}
@@ -121,16 +121,16 @@ footer {
 			margin: 0;
 		}
 		article {
-			@include fluid-column(6, $parent: 6);
+			@include fluid-column(6, $context: 6);
 			.float-left, .float-right { margin-bottom: fluid-width($grid-gutter-width / 2, grid-column-width(6)); }
 			.float-left { float: left; margin-right: fluid-width($grid-gutter-width / 2, grid-column-width(6)); }
 			.float-right { float: right; margin-left: fluid-width($grid-gutter-width / 2, grid-column-width(6)); }
-			img.grid-3 { @include fluid(3, $parent: 6, $parent-plus: -$grid-gutter-width); }
+			img.grid-3 { @include fluid(3, $context: 6, $context-plus: -$grid-gutter-width); }
 		}
 		aside {
-			@include fluid-column(6, $parent: 6);
+			@include fluid-column(6, $context: 6);
 			.box img {
-				width: fluid-column-width(6, $parent: 6, $parent-plus: -$grid-gutter-width);
+				width: fluid-column-width(6, $context: 6, $context-plus: -$grid-gutter-width);
 			}
 		}
 	}
@@ -158,10 +158,10 @@ footer {
 		margin: 0 fluid-width($grid-gutter-width/2, grid-column-width(8, $grid-gutter-width));
 	}
 	.left-column {
-		@include fluid-column(3, $parent: 8);
+		@include fluid-column(3, $context: 8);
 	}
 	.main-column {
-		@include fluid-column(5, $parent: 8);
+		@include fluid-column(5, $context: 8);
 		section {
 			@include fluid-row();
 		}
@@ -169,16 +169,16 @@ footer {
 			margin: 0;
 		}
 		article {
-			@include fluid-column(5, $parent: 5);
+			@include fluid-column(5, $context: 5);
 			.float-left, .float-right { margin-bottom: fluid-width($grid-gutter-width / 2, grid-column-width(5)); }
 			.float-left { float: left; margin-right: fluid-width($grid-gutter-width / 2, grid-column-width(5)); }
 			.float-right { float: right; margin-left: fluid-width($grid-gutter-width / 2, grid-column-width(5)); }
-			img.grid-3 { @include fluid(3, $parent: 5, $parent-plus: -$grid-gutter-width); }
+			img.grid-3 { @include fluid(3, $context: 5, $context-plus: -$grid-gutter-width); }
 		}
 		aside {
-			@include fluid-column(5, $parent: 5);
+			@include fluid-column(5, $context: 5);
 			.box img {
-				width: fluid-column-width(5, $parent: 5, $parent-plus: -$grid-gutter-width);
+				width: fluid-column-width(5, $context: 5, $context-plus: -$grid-gutter-width);
 			}
 		}
 	}
@@ -199,10 +199,10 @@ footer {
 		margin: 0 fluid-width($grid-gutter-width/2, grid-column-width(9, $grid-gutter-width));
 	}
 	.left-column {
-		@include fluid-column(3, $parent: 9);
+		@include fluid-column(3, $context: 9);
 	}
 	.main-column {
-		@include fluid-column(6, $parent: 9);
+		@include fluid-column(6, $context: 9);
 		section {
 			@include fluid-row();
 		}
@@ -210,16 +210,16 @@ footer {
 			margin: 0;
 		}
 		article {
-			@include fluid-column(6, $parent: 6);
+			@include fluid-column(6, $context: 6);
 			.float-left, .float-right { margin-bottom: fluid-width($grid-gutter-width / 2, grid-column-width(6)); }
 			.float-left { float: left; margin-right: fluid-width($grid-gutter-width / 2, grid-column-width(6)); }
 			.float-right { float: right; margin-left: fluid-width($grid-gutter-width / 2, grid-column-width(6)); }
-			img.grid-3 { @include fluid(3, $parent: 6, $parent-plus: -$grid-gutter-width); }
+			img.grid-3 { @include fluid(3, $context: 6, $context-plus: -$grid-gutter-width); }
 		}
 		aside {
-			@include fluid-column(6, $parent: 6);
+			@include fluid-column(6, $context: 6);
 			.box img {
-				width: fluid-column-width(6, $parent: 6, $parent-plus: -$grid-gutter-width);
+				width: fluid-column-width(6, $context: 6, $context-plus: -$grid-gutter-width);
 			}
 		}
 	}
@@ -240,10 +240,10 @@ footer {
 		margin: 0 fluid-width($grid-gutter-width/2, grid-column-width(11, $grid-gutter-width));
 	}
 	.left-column {
-		@include fluid-column(3, $parent: 11);
+		@include fluid-column(3, $context: 11);
 	}
 	.main-column {
-		@include fluid-column(8, $parent: 11);
+		@include fluid-column(8, $context: 11);
 		section {
 			@include fluid-row();
 		}
@@ -251,16 +251,16 @@ footer {
 			margin: 0;
 		}
 		article {
-			@include fluid-column(5, $parent: 8);
+			@include fluid-column(5, $context: 8);
 			.float-left, .float-right { margin-bottom: fluid-width($grid-gutter-width / 2, grid-column-width(5)); }
 			.float-left { float: left; margin-right: fluid-width($grid-gutter-width / 2, grid-column-width(5)); }
 			.float-right { float: right; margin-left: fluid-width($grid-gutter-width / 2, grid-column-width(5)); }
-			img.grid-3 { @include fluid(3, $parent: 5, $parent-plus: -$grid-gutter-width); }
+			img.grid-3 { @include fluid(3, $context: 5, $context-plus: -$grid-gutter-width); }
 		}
 		aside {
-			@include fluid-column(3, $parent: 8);
+			@include fluid-column(3, $context: 8);
 			.box img {
-				width: fluid-column-width(3, $parent: 3, $parent-plus: -$grid-gutter-width);
+				width: fluid-column-width(3, $context: 3, $context-plus: -$grid-gutter-width);
 			}
 		}
 	}

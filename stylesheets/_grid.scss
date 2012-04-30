@@ -30,13 +30,35 @@ $grid-support-for-ie6: false !default;
 //-----------------------------------
 
 // apply a width to a column
-@mixin grid($i, $plus: 0) {
+@mixin grid($i, $plus: 0, $with-gutters: false) {
   width: grid-column-width($i, $plus);
+  @if $with-gutters { @include grid-column-gutters; }
 }
 
-// return a width
+// apply standard gutters to a column or row
+@mixin grid-gutters($row: false) {
+  margin: 0 grid-gutter-width($row);
+}
+@mixin grid-row-gutters() {
+  @include grid-gutters(true);
+}
+@mixin grid-column-gutters() {
+  @include grid-gutters(false);
+}
+
+// return a column width in pixels
 @function grid-column-width($i, $plus: 0) {
   @return $grid-column-width * $i + $grid-gutter-width * ($i - 1) + $plus;
+}
+
+// return a row width in pixels
+@function grid-row-width($i, $plus: 0) {
+  @return grid-column-width($i, $plus + $grid-gutter-width);
+}
+
+// return a gutter width in pixels
+@function grid-gutter-width($row: false) {
+  @return (-$grid-gutter-width / 2 * if($row, -1, 1));
 }
 
 //-----------------------------------
@@ -46,7 +68,7 @@ $grid-support-for-ie6: false !default;
 // specify a container as a page
 @mixin grid-page($i: $grid-columns, $plus: 0) {
   @extend .clearfix;
-  width: grid-column-width($i, $plus + $grid-gutter-width);
+  width: grid-row-width($i, $plus);
   margin: 0 auto;
 }
 
@@ -59,7 +81,7 @@ $grid-support-for-ie6: false !default;
   @if $page {
     margin: 0 0;
   } @else {
-    margin: 0 (-$grid-gutter-width / 2);
+    @include grid-row-gutters;
   }
 }
 
@@ -68,12 +90,11 @@ $grid-support-for-ie6: false !default;
 //-----------------------------------
 
 // specify a column
-@mixin grid-column($i: false, $plus: 0) {
-  margin: 0 ($grid-gutter-width / 2);
+@mixin grid-column($i: false, $plus: 0, $with-gutters: true) {
   float: left;
-  
-  @if $grid-support-for-ie6 { display: inline; }
-  
+  @if $grid-support-for-ie6 { _display: inline; }
+  @if $with-gutters { @include grid-column-gutters; }
+
   // apply a width
   @if $i { @include grid($i, $plus); }
 }
@@ -82,9 +103,13 @@ $grid-support-for-ie6: false !default;
 @mixin grid-offset($i: 1, $plus: 0, $side: left) {
   margin-#{$side}: (grid-column-width($i, $grid-gutter-width + $plus) + ($grid-gutter-width/2));
 }
+
+// convenience mixin for left offsets
 @mixin grid-offset-left($i: 1, $plus: 0) {
   @include grid-offset($i, $plus, left);
 }
+
+// convenience mixin for right offsets
 @mixin grid-offset-right($i: 1, $plus: 0) {
   @include grid-offset($i, $plus, right);
 }
