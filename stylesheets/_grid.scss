@@ -58,7 +58,7 @@ $grid-support-for-ie6: false !default;
 
 // return a gutter width in pixels
 @function grid-gutter-width($row: false) {
-  @return (-$grid-gutter-width / 2 * if($row, -1, 1));
+  @return ($grid-gutter-width / 2 * if($row, -1, 1));
 }
 
 //-----------------------------------
