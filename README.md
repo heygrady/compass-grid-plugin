@@ -78,10 +78,10 @@ The fluid grid uses the variables from the fixed grid module.
 - **$fluid-support-for-ie7**: *false* - Creates widths for IE6 and IE7 that have had a half-pixel subtracted to account for IE 7 and below always rounding up on partial pixels.
 
 ### Functions
-- **fluid-column-width(** *$i*, *[$plus: 0]*, *[$context: $grid-columns]*, *[$context-plus: 0]*, *$nudge: false* **)** - Function for calculating column widths. Useful for integrating standard grid measurements into other elements, besides columns. Particularly useful for using columns widths as margin or padding.
-- **fluid-gutter-width(** *[$context: $grid-columns]*, *[$context-plus: 0]*, *$row: false*, *$nudge: false* **)** - Function for calculating the width of a gutter. Useful for applying margins to columns and rows. The `$row` argument controls if the returned length is negative or not. Rows require a negative margin.
-- **fluid-width(** *$width*, *$context-width: grid-column-width($grid-columns, $grid-gutter-width)*, *$nudge: false* **)** - Function for calculating arbitrary widths.
-- **fluid-nudge(** *[$context-width: grid-column-width($grid-columns, $grid-gutter-width)]*, *$nudge: false* **)** - Function for calculating width of a half-pixel. Used for correcting for IE6 and IE7 because they always roundup.
+- **fluid-column-width(** *$i*, *[$plus: 0]*, *[$context: $grid-columns]*, *[$context-plus: 0]*, *[$nudge: false]* **)** - Function for calculating column widths. Useful for integrating standard grid measurements into other elements, besides columns. Particularly useful for using columns widths as margin or padding.
+- **fluid-gutter-width(** *[$context: $grid-columns]*, *[$context-plus: 0]*, *[$row: false]*, *[$nudge: false]* **)** - Function for calculating the width of a gutter. Useful for applying margins to columns and rows. The `$row` argument controls if the returned length is negative or not. Rows require a negative margin.
+- **fluid-width(** *$width*, *[$context-width: grid-column-width($grid-columns, $grid-gutter-width)]*, *[$nudge: false]* **)** - Function for calculating arbitrary widths.
+- **fluid-nudge(** *[$context-width: grid-column-width($grid-columns, $grid-gutter-width)]*, *[$nudge: false]* **)** - Function for calculating width of a half-pixel. Used for correcting for IE6 and IE7 because they always roundup.
 
 ### Mixins
 - **fluid(** *$i*, *[$plus: 0]*, *[$context: $grid-columns]*, *[$context-plus: 0]*, *[$with-gutters: false]* **)** - Mixin for applying widths to a column. The `$plus` argument can be used to alter the width to account for borders or padding. The `$with-gutters` argument will optionally output the gutter margins in addition to the width.
