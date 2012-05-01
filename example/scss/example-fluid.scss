@@ -1,7 +1,8 @@
 $grid-clearfix-class: false; // don't auto create the clearfix
 
 // import the grid
-@import "grid/fluid";
+@import "../../stylesheets/grid";
+@import "../../stylesheets/grid/fluid";
 
 // establishes page width and centers
 #container {

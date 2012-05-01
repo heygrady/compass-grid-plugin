@@ -63,7 +63,7 @@ The primary grid is a fixed, pixel grid. This grid is ideal for designs that do 
 - **grid-offset(** *[$i: 1]*, *[$plus: 0]*, *[$side]* **)** - Mixin for altering the left or right margin on a column. Useful for adding empty columns before or after a column. The `$i` argument specifies the width of the offset in columns. The `$plus` argument can be used to alter the width. *$side* can be right, left, top or bottom (although right and left are the most useful).
 - **grid-offset-left(** *[$i: 1]*, *[$plus: 0]* **)** - Convenience mixin for setting the left margin on a column. The `$i` argument specifies the width of the offset in columns. The `$plus` argument can be used to alter the width.
 - **grid-offset-right(** *[$i: 1]*, *[$plus: 0]* **)** - Convenience mixin for setting the right margin on a column. The `$i` argument specifies the width of the offset in columns. The `$plus` argument can be used to alter the width.
-- **grid-css( )** - outputs the default grid CSS in case those classes are required in the markup.
+- **grid-css( )** - Outputs the default grid CSS in case those classes are required in the markup.
 
 ## Fluid Grid Usage
 This is a fluid version of the grid that uses percentages for widths. This grid is ideal for responsive designs that need to scale depending on the device. The fluid grid is more complex because percentage widths depend on their context for meaning. Every function and mixin is similar to the fixed grid but there are two additional variables to provide context.
@@ -80,7 +80,7 @@ The fluid grid uses the variables from the fixed grid module.
 ### Functions
 - **fluid-column-width(** *$i*, *[$plus: 0]*, *[$context: $grid-columns]*, *[$context-plus: 0]*, *[$nudge: false]* **)** - Function for calculating column widths. Useful for integrating standard grid measurements into other elements, besides columns. Particularly useful for using columns widths as margin or padding.
 - **fluid-gutter-width(** *[$context: $grid-columns]*, *[$context-plus: 0]*, *[$row: false]*, *[$nudge: false]* **)** - Function for calculating the width of a gutter. Useful for applying margins to columns and rows. The `$row` argument controls if the returned length is negative or not. Rows require a negative margin.
-- **fluid-width(** *$width*, *[$context-width: grid-column-width($grid-columns, $grid-gutter-width)]*, *[$nudge: false]* **)** - Function for calculating arbitrary widths.
+- **fluid-width(** *$width*, *[$context-width: grid-column-width($grid-columns, $grid-gutter-width)]*, *[$nudge: false]* **)** - Function for calculating arbitrary widths in percentages. The `$width` is the width of the element you want to calculate and `$context` is the width of the parent element.
 - **fluid-nudge(** *[$context-width: grid-column-width($grid-columns, $grid-gutter-width)]*, *[$nudge: false]* **)** - Function for calculating width of a half-pixel. Used for correcting for IE6 and IE7 because they always roundup.
 
 ### Mixins
@@ -90,16 +90,15 @@ The fluid grid uses the variables from the fixed grid module.
 - **fluid-column(** *[$i: false]*, *[$plus: 0]*, *[$context: $grid-columns]*, *[$context-plus: 0]*, *[$with-gutters: true]* **)** - Mixin for declaring a column. Specifying `$i` will call the `grid` mixin. The `$plus` argument is passed to the *grid* mixin if `$i` is also specified. The `$with-gutters` argument can be used to omit the gutter margins.
 - **fluid-offset(** *[$i: 1]*, *[$plus: 0]*, *[$side]*, *[$context: $grid-columns]*, *[$context-plus: 0]* **)** - Mixin for altering the left or right margin on a column. Useful for adding empty columns before or after a column. The `$i` argument specifies the width of the offset in columns. The `$plus` argument can be used to alter the width. `$side` can be right, left, top or bottom (although right and left are the most useful).
 - **fluid-gutters(** *[$context: $grid-columns]*, *[$context-plus: 0]*, *[$row: false]* **)** - Mixin for adding gutter margins to a column or a row. The `$row` argument controls if the returned margins are negative. Rows require a negative margin.
-- **fluid-row-gutters( *[$context: $grid-columns]*, *[$context-plus: 0]* )** - Mixin for adding gutter margins to a row.
-- **fluid-column-gutters( *[$context: $grid-columns]*, *[$context-plus: 0]* )** - Mixin for adding gutter margins to a column.
+- **fluid-row-gutters(** *[$context: $grid-columns]*, *[$context-plus: 0]* **)** - Mixin for adding gutter margins to a row.
+- **fluid-column-gutters(** *[$context: $grid-columns]*, *[$context-plus: 0]* **)** - Mixin for adding gutter margins to a column.
 - **fluid-offset-left(** *[$i: 1]*, *[$plus: 0]*, *[$context: $grid-columns]*, *[$context-plus: 0]* **)** - Convenience mixin for setting the left margin on a column. The `$i` argument specifies the width of the offset in columns. The `$plus` argument can be used to alter the width.
 - **fluid-offset-right(** *[$i: 1]*, *[$plus: 0]*, *[$context: $grid-columns]*, *[$context-plus: 0]* **)** - Convenience mixin for setting the right margin on a column. The `$i` argument specifies the width of the offset in columns. The `$plus` argument can be used to alter the width.
-- **fluid-css( )** - outputs the default fluid grid CSS in case those classes are required in the markup.
+- **fluid-css( )** - Outputs the default fluid grid CSS in case those classes are required in the markup.
 
 ## Notes
 - You must define a `.clearfix` class for the grid to work properly. The grid attempts to extend an existing `.clearfix` class. By default a clearfix class is output automatically. If you want to use your own, you can set `$grid-clearfix-class: false;`.
 - The only thing requiring an IE6 fix is the floats on columns.
-- In order to support accurate fluid grid percentages, the number precision in Sass is set to 8.
-- The fluid grid is not designed to work in older versions of IE, below version 8. The fluid grid is intended to be used on modern devices that support media queries.
-- The only thing in the fluid grid not supported in IE7 is the use of `box-sizing`. This will only matter if borders or padding are added to a column.
+- In order to support accurate fluid grid percentages, the number precision in Sass is set to 7.
+- The fluid grid uses of `box-sizing` which isn't supported in IE7 or below. This will only matter if borders or padding are added to a column.
 - The CSS generated by `@include fluid-css` for the fluid grid will not work in IE6 because of the use of the direct child selector.

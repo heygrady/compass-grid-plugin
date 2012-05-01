@@ -1,6 +1,7 @@
 $fluid-support-for-ie7: true;
 
 // import the grid
+@import "../../stylesheets/grid";
 @import "../../stylesheets/grid/fluid";
 @include grid-css;
 @include fluid-css;

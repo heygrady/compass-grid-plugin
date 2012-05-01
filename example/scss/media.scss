@@ -1,6 +1,6 @@
 // import the grid
-@import "grid";
-@import "grid/fluid";
+@import "../../stylesheets/grid";
+@import "../../stylesheets/grid/fluid";
 
 // generic styles
 .float-left, .float-right { margin-bottom: ($grid-gutter-width / 2); }
