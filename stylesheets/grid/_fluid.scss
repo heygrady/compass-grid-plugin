@@ -102,7 +102,7 @@ $fluid-support-for-ie7: false !default;
 
 // alter the margins of a column
 @mixin fluid-offset($i: 1, $plus: 0, $side: left, $context: $grid-columns, $context-plus: 0) {
-  margin-#{$side}: (fluid-column-width($i, $plus) + fluid-gutter-width($context, $context-plus) * 3);
+  margin-#{$side}: (fluid-column-width($i, $plus, $context, $context-plus) + fluid-gutter-width($context, $context-plus) * 3);
   @if $fluid-support-for-ie7 {
     *margin-#{$side}: (fluid-column-width($i, $plus, $context, $context-plus, $nudge: nudge) + fluid-gutter-width($context, $context-plus, $nudge: nudge) * 3);
   }
