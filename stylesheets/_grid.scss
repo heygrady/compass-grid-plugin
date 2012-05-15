@@ -52,7 +52,7 @@ $grid-support-for-ie6: false !default;
 }
 
 // return a row width in pixels
-@function grid-row-width($i, $plus: 0) {
+@function grid-row-width($i: $grid-columns, $plus: 0) {
   @return grid-column-width($i, $plus + $grid-gutter-width);
 }
 

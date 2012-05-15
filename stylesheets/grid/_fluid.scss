@@ -8,6 +8,7 @@
 // Defaults
 //-----------------------------------
 $fluid-support-for-ie7: false !default;
+$fluid-debug: false !default;
 
 //-----------------------------------
 // Column Widths
@@ -15,6 +16,8 @@ $fluid-support-for-ie7: false !default;
 
 // apply a width to a column
 @mixin fluid($i, $plus: 0, $context: $grid-columns, $context-plus: 0, $with-gutters: false) {
+  @if $fluid-debug { @debug "@mixin fluid", $i, $plus, $context, $context-plus, $with-gutters; }
+  
   width: fluid-column-width($i, $plus, $context, $context-plus);
   @if $fluid-support-for-ie7 { 
     *width: fluid-column-width($i, $plus, $context, $context-plus, $nudge: true);
@@ -24,6 +27,8 @@ $fluid-support-for-ie7: false !default;
 
 // apply standard gutters to a column or row
 @mixin fluid-gutters($context: $grid-columns, $context-plus: 0, $row: false) {
+  @if $fluid-debug { @debug "@mixin fluid-gutters", $context, $context-plus, $row; }
+
   margin: 0 fluid-gutter-width($context, $context-plus, $row);
   @if $fluid-support-for-ie7 { 
     *margin: 0 fluid-gutter-width($context, $context-plus, $row, $nudge: true);
@@ -38,16 +43,22 @@ $fluid-support-for-ie7: false !default;
 
 // return a percentage column width relative to a row width
 @function fluid-column-width($i, $plus: 0, $context: $grid-columns, $context-plus: 0, $nudge: false) {
+  @if $fluid-debug { @debug "@function fluid-column-width", $i, $plus, $context, $context-plus, $nudge; }
+
   @return fluid-width(grid-column-width($i, $plus), grid-row-width($context, $context-plus), $nudge);
 }
 
 // return a percentage gutter width relative to a column or row width
 @function fluid-gutter-width($context: $grid-columns, $context-plus: 0, $row: false, $nudge: false) {
-  @return fluid-width($grid-gutter-width / 2 * if($row, -1, 1), grid-row-width($context, $context-plus + if($row, 0, $grid-gutter-width)), $nudge);
+  @if $fluid-debug { @debug "@function fluid-gutter-width", $context, $context-plus, $row, $nudge; }
+
+  @return fluid-width($grid-gutter-width / 2 * if($row, -1, 1), grid-row-width($context, $context-plus + if($row, -$grid-gutter-width, 0)), $nudge);
 }
 
 // return a percentage width relative to a parent width
 @function fluid-width($width, $context-width: grid-column-width($grid-columns, $grid-gutter-width), $nudge: false) {
+  @if $fluid-debug { @debug "@function fluid-width", $width, $context-width, $nudge; }
+
   @return percentage($width / $context-width) + if($nudge, fluid-nudge($context-width), 0);
 }
 
@@ -63,6 +74,8 @@ $fluid-support-for-ie7: false !default;
 
 // specify a container as a page
 @mixin fluid-page($i: $grid-columns, $plus: 0, $use-max-width: true) {
+  @if $fluid-debug { @debug "@mixin fluid-page", $i, $plus, $use-max-width; }
+
   @extend .clearfix;
   @include box-sizing(border-box);
   @if $use-max-width { max-width: grid-column-width($i, $plus + $grid-gutter-width); }
@@ -72,6 +85,8 @@ $fluid-support-for-ie7: false !default;
 
 // specify a container as a row
 @mixin fluid-row($page: false, $context: $grid-columns, $context-plus: 0) {
+  @if $fluid-debug { @debug "@mixin fluid-row", $page, $context, $context-plus; }
+
   @extend .clearfix;
   @include box-sizing(border-box);
   width: auto;
@@ -90,6 +105,8 @@ $fluid-support-for-ie7: false !default;
 
 // specify a column
 @mixin fluid-column($i: false, $plus: 0, $context: $grid-columns, $context-plus: 0, $with-gutters: true) {
+  @if $fluid-debug { @debug "@mixin fluid-column", $i, $plus, $context, $context-plus, $with-gutters; }
+
   @include box-sizing(border-box);
   float: left;
   @if $grid-support-for-ie6 { _display: inline; }
@@ -101,6 +118,8 @@ $fluid-support-for-ie7: false !default;
 
 // alter the margins of a column
 @mixin fluid-offset($i: 1, $plus: 0, $side: left, $context: $grid-columns, $context-plus: 0) {
+  @if $fluid-debug { @debug "@mixin fluid-column", $i, $plus, $side, $context, $context-plus; }
+
   margin-#{$side}: (fluid-column-width($i, $plus, $context, $context-plus) + fluid-gutter-width($context, $context-plus) * 3);
   @if $fluid-support-for-ie7 {
     *margin-#{$side}: (fluid-column-width($i, $plus, $context, $context-plus, $nudge: nudge) + fluid-gutter-width($context, $context-plus, $nudge: nudge) * 3);
