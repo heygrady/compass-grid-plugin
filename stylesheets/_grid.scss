@@ -8,20 +8,27 @@ $grid-column-width: 60px !default;
 $grid-gutter-width: 20px !default;
 $grid-columns: 12 !default;
 
-// apply fixes for IE6
-//$grid-extend-clearfix: true !default;
-$grid-clearfix-class: true !default;
-$grid-support-for-ie6: false !default;
+$grid-clearfix-extend: false !default;
+$grid-clearfix-class: clearfix !default; // clearfix
+$grid-clearfix-mixin: pie-clearfix !default; // pie-clearfix
 
-@if $grid-clearfix-class {
-  .clearfix {
-    @if $grid-clearfix-class == clearfix {
-      @include clearfix;
-    } @else if $grid-clearfix-class == legacy-pie-clearfix {
-      @include legacy-pie-clearfix;
-    } @else {
-      @include pie-clearfix;
-    }
+$grid-support-for-ie6: false !default; // apply fixes for IE6
+
+@mixin grid-clearfix($clearfix-mixin: $grid-clearfix-mixin, $clearfix-extend: $grid-clearfix-extend) {
+  @if not($clearfix-extend) {
+    @include grid-clearfix-rules($clearfix-mixin);
+  } @else {
+    @extend .#{$grid-clearfix-class};
+  }
+}
+
+@mixin grid-clearfix-rules ($clearfix-mixin: $grid-clearfix-mixin) {
+  @if $clearfix-mixin == clearfix {
+    @include clearfix;
+  } @else if $clearfix-mixin == legacy-pie-clearfix {
+    @include legacy-pie-clearfix;
+  } @else {
+    @include pie-clearfix;
   }
 }
 
@@ -66,15 +73,15 @@ $grid-support-for-ie6: false !default;
 //-----------------------------------
 
 // specify a container as a page
-@mixin grid-page($i: $grid-columns, $plus: 0) {
-  @extend .clearfix;
+@mixin grid-page($i: $grid-columns, $plus: 0, $extend: $grid-clearfix-extend) {
+  @include grid-clearfix($extend);
   width: grid-row-width($i, $plus);
   margin: 0 auto;
 }
 
 // specify a container as a row
-@mixin grid-row($page: false) {
-  @extend .clearfix;
+@mixin grid-row($page: false, $extend: $grid-clearfix-extend) {
+  @include grid-clearfix($extend);
   width: auto;
   
   // rows directly inside a page don't need the negative margin

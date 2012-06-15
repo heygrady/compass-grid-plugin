@@ -1,6 +1,11 @@
 // import the grid
-@import "grid";
+@import "../../stylesheets/grid";
+$grid-clearfix-extend: true;
 @include grid-css;
+
+.clearfix {
+  @include grid-clearfix-rules;
+}
 
 .column {
   background-color: #ccc;

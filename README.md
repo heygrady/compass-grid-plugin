@@ -44,6 +44,9 @@ The primary grid is a fixed, pixel grid. This grid is ideal for designs that do 
 - **$grid-column-width**: *60px* - The width of 1 column
 - **$grid-gutter-width**: *20px* - The space between 2 columns
 - **$grid-columns**: *12* - The total number of columns
+- **$grid-clearfix-extend:** *false* - Determines if clearfix is applied directly to pages and rows or if an `@extend` directive should be used. Extend directives can make the code more compact but will cause issues in [Sass 3.1.19](http://sass-lang.com/docs/yardoc/file.SASS_CHANGELOG.html#3119) when `@media` queries are used.
+- **$grid-clearfix-class:** *clearfix* - Sets the name of the clearfix class to extend if `$grid-clearfix-extend` is set to true.
+- **$grid-clearfix-mixin:** *pie-clearfix* - Sets the mixin to use for the clearfix if `$grid-clearfix-extend` is set to false.
 - **$grid-clearfix-class**: *true* - Create a `.clearfix` class to extend
 - **$grid-support-for-ie6**: *false* - Apply fixes for IE6
 
@@ -54,9 +57,9 @@ The primary grid is a fixed, pixel grid. This grid is ideal for designs that do 
 
 ### Mixins
 - **grid(** *$i*, *[$plus: 0]*, *[$with-gutters: false]* **)** - Mixin for applying widths to a column. The `$plus` argument can be used to alter the width to account for borders or padding. The `$with-gutters` argument will optionally output the gutter margins in addition to the width.
-- **grid-page(** *[$i: $grid-columns]*, *[$plus: 0]* **)** - Mixin for declaring a page element. `$i` is `$grid-columns` by default but can be altered. The `$plus` argument can be used to alter the width to account for borders or padding.
+- **grid-page(** *[$i: $grid-columns]*, *[$plus: 0]*, *[$extend: $grid-clearfix-extend]* **)** - Mixin for declaring a page element. `$i` is `$grid-columns` by default but can be altered. The `$plus` argument can be used to alter the width to account for borders or padding.
 - **grid-row(** *[$page: false]* **)** - Mixing for declaring a column container. The *$page* argument is removing the negative margins when directly inside a page element.
-- **grid-column(** *[$i: false]*, *[$plus: 0]* **)** - Mixin for declaring a column. Specifying `$i` will call the `grid` mixin. The `$plus` argument is passed to the `grid` mixin if `$i` is also specified.
+- **grid-column(** *[$i: false]*, *[$plus: 0]*, *[$extend: $grid-clearfix-extend]* **)** - Mixin for declaring a column. Specifying `$i` will call the `grid` mixin. The `$plus` argument is passed to the `grid` mixin if `$i` is also specified.
 - **grid-gutters(** *[$row: false]* **)** - Mixin for adding gutter margins to a column or a row. The `$row` argument controls if the returned margins are negative. Rows require a negative margin.
 - **grid-row-gutters( )** - Mixin for adding gutter margins to a row.
 - **grid-column-gutters( )** - Mixin for adding gutter margins to a column.
@@ -85,8 +88,8 @@ The fluid grid uses the variables from the fixed grid module.
 
 ### Mixins
 - **fluid(** *$i*, *[$plus: 0]*, *[$context: $grid-columns]*, *[$context-plus: 0]*, *[$with-gutters: false]* **)** - Mixin for applying widths to a column. The `$plus` argument can be used to alter the width to account for borders or padding. The `$with-gutters` argument will optionally output the gutter margins in addition to the width.
-- **fluid-page(** *[$i: $grid-columns]*, *[$plus: 0]*, *[$use-max-width: true]* **)** - Mixin for declaring a page element. `$i` is `$grid-columns` by default but can be altered. The `$plus` argument can be used to alter the width to account for borders or padding. The `$use-max-width` determines if a pixel max-width is applied as well.
-- **fluid-row(** *[$page: false]*, *[$context: $grid-columns]*, *[$context-plus: 0]* **)** - Mixin for declaring a column container. The `$page` argument is for removing the negative margins when a row is directly inside a page element.
+- **fluid-page(** *[$i: $grid-columns]*, *[$plus: 0]*, *[$use-max-width: true]*, *[$extend: $grid-clearfix-extend]* **)** - Mixin for declaring a page element. `$i` is `$grid-columns` by default but can be altered. The `$plus` argument can be used to alter the width to account for borders or padding. The `$use-max-width` determines if a pixel max-width is applied as well.
+- **fluid-row(** *[$page: false]*, *[$context: $grid-columns]*, *[$context-plus: 0]*, *[$extend: $grid-clearfix-extend]* **)** - Mixin for declaring a column container. The `$page` argument is for removing the negative margins when a row is directly inside a page element.
 - **fluid-column(** *[$i: false]*, *[$plus: 0]*, *[$context: $grid-columns]*, *[$context-plus: 0]*, *[$with-gutters: true]* **)** - Mixin for declaring a column. Specifying `$i` will call the `grid` mixin. The `$plus` argument is passed to the *grid* mixin if `$i` is also specified. The `$with-gutters` argument can be used to omit the gutter margins.
 - **fluid-offset(** *[$i: 1]*, *[$plus: 0]*, *[$side]*, *[$context: $grid-columns]*, *[$context-plus: 0]* **)** - Mixin for altering the left or right margin on a column. Useful for adding empty columns before or after a column. The `$i` argument specifies the width of the offset in columns. The `$plus` argument can be used to alter the width. `$side` can be right, left, top or bottom (although right and left are the most useful).
 - **fluid-gutters(** *[$context: $grid-columns]*, *[$context-plus: 0]*, *[$row: false]* **)** - Mixin for adding gutter margins to a column or a row. The `$row` argument controls if the returned margins are negative. Rows require a negative margin.

@@ -73,10 +73,10 @@ $fluid-debug: false !default;
 //-----------------------------------
 
 // specify a container as a page
-@mixin fluid-page($i: $grid-columns, $plus: 0, $use-max-width: true) {
+@mixin fluid-page($i: $grid-columns, $plus: 0, $use-max-width: true, $extend: $grid-clearfix-extend) {
   @if $fluid-debug { @debug "@mixin fluid-page", $i, $plus, $use-max-width; }
 
-  @extend .clearfix;
+  @include grid-clearfix($extend);
   @include box-sizing(border-box);
   @if $use-max-width { max-width: grid-column-width($i, $plus + $grid-gutter-width); }
   width: 100%;
@@ -84,10 +84,10 @@ $fluid-debug: false !default;
 }
 
 // specify a container as a row
-@mixin fluid-row($page: false, $context: $grid-columns, $context-plus: 0) {
+@mixin fluid-row($page: false, $context: $grid-columns, $context-plus: 0, $extend: $grid-clearfix-extend) {
   @if $fluid-debug { @debug "@mixin fluid-row", $page, $context, $context-plus; }
 
-  @extend .clearfix;
+  @include grid-clearfix($extend);
   @include box-sizing(border-box);
   width: auto;
   
